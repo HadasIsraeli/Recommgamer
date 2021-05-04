@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import User from './User';
+import AddUser from './AddUser';
+class App extends Component {
+  state = {
+    users: [
+      { name: 'Hadas', age: 25, color: 'blue', id: 1 },
+      { name: 'Inbar', age: 26, color: 'pink', id: 2 },
+      { name: 'Grisha', age: 28, color: 'RED', id: 3 }
+    ]
+  }
+  addUser = (user) => {
+    // console.log(user);
+    user.id = Math.random();
+    let users = [...this.state.users, user];
+    this.setState({
+      users: users
+    })
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  deleteUser = (id) => {
+    //console.log(id);
+    let users = this.state.users.filter(user => {
+      return user.id !== id 
+    });
+    this.setState({
+      users:users
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>My First react app!!</h1>
+        <p>Hi! How are ya?!?!!</p>
+        <User deleteUser={this.deleteUser} users={this.state.users} />
+        {/* <User users={this.state.users} /> */}
+        <AddUser addUser={this.addUser} />
+      </div>
+    );
+  }
 }
 
 export default App;
