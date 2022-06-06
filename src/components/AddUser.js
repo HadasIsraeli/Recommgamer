@@ -19,7 +19,9 @@ class AddUser extends Component {
         e.preventDefault();
         console.log(this.state);
         this.props.addUser(this.state);
+        //add with write to json 
     }
+
     render() {
         return (
             <div className="form-inner">
@@ -46,6 +48,7 @@ class AddUser extends Component {
                         <input type="text" id="password" onChange={this.handleChange} />
                     </div>
                     <button className="submit-button">Submit</button>
+
                     {/* <br /> */}
                     <div className="img-game"><img src={joystick} alt="computer-game" className='img' /></div>
                 </form>

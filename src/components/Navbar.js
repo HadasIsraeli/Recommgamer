@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 <Link className="brand-logo" to="/">Game Searcher</Link>
                 <div className="right-navbar">
-                    <NavLink to='/Home'>Home</NavLink>
+                    <NavLink to='/Home'>Search Game</NavLink>
                     <NavLink to='/UsersPage'>Users</NavLink>
                     <NavLink to='/Register'>Register</NavLink>
                     <NavLink to='/Login'>Login</NavLink>

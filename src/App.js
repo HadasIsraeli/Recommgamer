@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/Home';
 import UsersPage from './components/UsersPage';
-import AddUser from './components/AddUser';
+import Register from './components/Register';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
           <Route>
             <Route exact path='/UsersPage' component={UsersPage} />
             <Route exact path='/Home' component={Home} />
-            <Route exact path='/Register' component={AddUser} />
+            <Route exact path='/Register' component={Register} />
             <Route path='/Login' component={LoginForm} />
           </Route>
         </div>

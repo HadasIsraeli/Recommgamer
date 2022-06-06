@@ -3,14 +3,14 @@ import React from 'react';
 const User = ({ users, deleteUser }) => {
     const userList = users.map(user => {
         // if (user.age > 25) {
-            return (
-                <div className="user" key={user.id}>
-                    <div>Name: {user.name} </div>
-                    <div>Age: {user.age} </div>
-                    <div>Gender: {user.gender} </div>
-                    <button onClick={()=>{deleteUser(user.id)}}>Delete User</button>
-                </div>
-            )
+        return (
+            <div className="user" key={user.id}>
+                <div>Name: {user.name} </div>
+                <div>Age: {user.age} </div>
+                <div>Gender: {user.gender} </div>
+                <button onClick={() => { deleteUser(user.id) }}>Delete User</button>
+            </div>
+        )
         // } else {
         //     return null
         // }
@@ -18,7 +18,7 @@ const User = ({ users, deleteUser }) => {
 
     return (
         <div className="user-list">
-            { userList}
+            {userList}
         </div>
     )
 }

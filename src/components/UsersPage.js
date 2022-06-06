@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import User from './User';
-// import AddUser from './AddUser';
 class UsersPage extends Component {
   state = {
     users: [
@@ -14,14 +13,6 @@ class UsersPage extends Component {
         name: 'Grisha', age: 29, gender: 'RED', id: 3, password: null, mail: null
       }
     ]
-  }
-  addUser = (user) => {
-    // console.log(user);
-    user.id = Math.random();
-    let users = [...this.state.users, user];
-    this.setState({
-      users: users
-    })
   }
 
   deleteUser = (id) => {
@@ -39,8 +30,6 @@ class UsersPage extends Component {
       <div className="App">
         <h2>Users list:</h2>
         <User deleteUser={this.deleteUser} users={this.state.users} />
-        {/* <User users={this.state.users} /> */}
-        {/* <AddUser addUser={this.addUser} /> */}
       </div>
     );
   }

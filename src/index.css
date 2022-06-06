@@ -51,8 +51,10 @@ button {
   align-content: center;
   width: 50%;
   background-color: rgb(90, 90, 90);
-  left: 30%;
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 20px;
   margin: 20px;
   box-shadow: 0 2px 6px 2px #8e9092;
@@ -78,7 +80,7 @@ button {
 }
 
 .user {
-  color: aliceblue;
+  color: #cfe413;
 }
 
 .form-register {
@@ -106,4 +108,9 @@ button {
 
 .right-navbar a{
   margin:10px
+}
+
+.select-key{
+  color: #000000;
+  max-width: 250px;
 }
