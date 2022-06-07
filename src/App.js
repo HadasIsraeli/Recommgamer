@@ -5,7 +5,7 @@ import Home from './components/Home';
 import UsersPage from './components/UsersPage';
 import Register from './components/Register';
 import LoginForm from './components/LoginForm';
-
+import WelcomePage from './components/WelcomePage';
 class App extends Component {
   render() {
     return (
@@ -13,6 +13,7 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Route>
+          <Route exact path='/' component={WelcomePage} />
             <Route exact path='/UsersPage' component={UsersPage} />
             <Route exact path='/Home' component={Home} />
             <Route exact path='/Register' component={Register} />

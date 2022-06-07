@@ -36,11 +36,28 @@ button {
   margin: 10px;
 }
 
+.welcome-img {
+  width: 300px;
+  height: 300px;
+  padding-bottom: 10px;
+  margin: 10px;
+}
+
 .img-game {
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 250px;
+}
+
+.welcome-game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-inner {
