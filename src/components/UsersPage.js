@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import User from './User';
+
 class UsersPage extends Component {
   state = {
     users: [
@@ -27,7 +28,7 @@ class UsersPage extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="users-page">
         <h2>Users list:</h2>
         <User deleteUser={this.deleteUser} users={this.state.users} />
       </div>
