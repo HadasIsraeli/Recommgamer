@@ -29,6 +29,14 @@ button {
   font-style: italic;
 }
 
+.logout-button {
+  bottom: 0;
+  position: absolute;
+  left: 0;
+}
+
+
+
 .img {
   /* width: 230px;
   height: 230px; */
@@ -119,7 +127,7 @@ button {
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #777171;
+  background-color: #4d5053;
   border-radius: 0px 0px 10px 10px;
   padding: 10px;
 }

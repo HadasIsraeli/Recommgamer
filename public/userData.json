@@ -21,7 +21,7 @@
             "age": 29,
             "gender": "RED",
             "id": 3,
-            "type":"user",
+            "type":"basic",
             "password":"G123456"
         }
     ]

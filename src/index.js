@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from "history";
-// import LoginApp from './LoginApp';
+import LoginApp from './LoginApp';
+import Register from './components/Register';
 
 
 const history = createBrowserHistory();
@@ -13,9 +14,9 @@ const history = createBrowserHistory();
 ReactDOM.render(
   <Router history={history}>
     <Switch>
-      {/* <Route path='/' component={LoginApp} /> */}
-      <Route path='/' component={App} />
-      {/* <Route exact path='/' component={App} /> */}
+      <Route path='/' component={LoginApp} />
+      {/* <Route path='/' component={Register} /> */}
+      <Route exact path='/' component={App} />
     </Switch>
    </Router>
   ,
