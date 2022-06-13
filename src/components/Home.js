@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import User from './User';
 // import AddUser from './AddUser';
 
-import Select from 'react-select';
+// import Select from 'react-select';
 
 // const options = [
 //   { value: 'Indie', label: 'Indie' },
