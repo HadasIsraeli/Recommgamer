@@ -7,7 +7,7 @@ function Navbar() {
 
     const user = useContext(LoggedInUser);
     let user_type = user.type;
-    console.log('The User Is: ', user_type);
+    console.log('The User Is: ', user_type, user);
 
     if (user_type === 'manager') {
         // console.log('The User Is: ', user_type);
@@ -34,8 +34,8 @@ function Navbar() {
                     <div className="right-navbar">
                         <NavLink to='/Home'>Search Game</NavLink>
                         {/* <NavLink to='/UsersPage'>Users</NavLink> */}
-                        {/* <NavLink to='/Register'>Register</NavLink>
-                        <NavLink to='/Login'>Login</NavLink> */}
+                        {/* <NavLink to='/Register'>Register</NavLink> */}
+                        {/* <NavLink to='/Login'>Login</NavLink> */}
                     </div>
                 </div>
             </nav>

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 import LoginApp from './LoginApp';
-// import Register from './components/Register';
+import Register from './components/Register';
 
 
 const history = createBrowserHistory();
@@ -14,8 +14,8 @@ const history = createBrowserHistory();
 ReactDOM.render(
   <Router history={history}>
     <Switch>
-      <Route path='/' component={LoginApp} />
-      {/* <Route path='/' component={Register} /> */}
+      <Route exact path='/' component={LoginApp} />
+      <Route path='/Register' component={Register} />
       <Route exact path='/' component={App} />
     </Switch>
    </Router>

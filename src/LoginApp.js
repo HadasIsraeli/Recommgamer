@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import LoginForm from './components/LoginForm';
-// import { Button } from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
-// import { NavLink } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 
 import App from './App';
@@ -11,59 +11,77 @@ import App from './App';
 export const LoggedInUser = React.createContext();
 
 function LoginApp() {
-    
-    let isLoggedIn = "";
-    
+
+    // let isLoggedIn = false;
+
     const adminUser = {
+        name: "adminUser",
+        nickname: "admin",
         id: "123456789",
         password: "Admin12345!",
-        type: "manager"
+        type: "manager",
+        LoggedIn: "",
+        gender: "female",
+        age: "27"
     }
-    
+
     const basicUser = {
+        name: "basicUser",
+        nickname: "basic",
         id: "12345",
         password: "basic12345",
-        type: "basic"
+        type: "basic",
+        LoggedIn: "",
+        gender: "male",
+        age: "25"
     }
-    
-    const [user, setUser] = useState({ name: "", id: "", type: "" });
+
+    const [user, setUser] = useState({ name: "", id: "", nickname: "", type: "", LoggedIn: false });
     const [error, SetError] = useState("");
 
-    
+
     const Login = details => {
         console.log(details);
 
-        if (details.id === adminUser.id && details.password === adminUser.password) {
+        if (details.name === adminUser.name && details.nickname === adminUser.nickname && details.password === adminUser.password) {
             setUser({
                 name: details.name,
-                id: details.id,
+                nickname: details.nickname,
                 type: adminUser.type,
+                id: adminUser.id,
+                LoggedIn: true,
+                gender: adminUser.gender,
+                age: adminUser.age
             });
-            // this.props.history.push('/');
-            isLoggedIn = true;
-            console.log('Admin Logged in!  isLoggedIn:', isLoggedIn, user);
+            this.props.history.push('/');
+            // isLoggedIn = true;
+            console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
         }
-        if (details.id === basicUser.id && details.password === basicUser.password) {
+        if (details.name === basicUser.name && details.nickname === basicUser.nickname && details.password === basicUser.password) {
             setUser({
                 name: details.name,
-                id: details.id,
+                nickname: details.nickname,
                 type: basicUser.type,
+                id: basicUser.id,
+                LoggedIn: true,
+                gender: basicUser.gender,
+                age: basicUser.age
             });
-            isLoggedIn = true;
-            console.log('basic user Logged in!  isLoggedIn:', isLoggedIn, user);
+            // isLoggedIn = true;
+            console.log('basic user Logged in!  isLoggedIn:', user.LoggedIn, user);
         }
         else {
-            isLoggedIn = false;
+            // isLoggedIn = false;
             console.log('Details do not match!');
             SetError('Details do not match! Please Register :) ');
         }
     }
 
     const Logout = () => {
-        setUser({ name: "", id: "", type: "" });
+        setUser({ name: "", id: "", nickname: "", type: "", LoggedIn: false });
         // this.props.history.push('/');
-        isLoggedIn = false;
-        console.log("Logout", isLoggedIn, user);
+        // isLoggedIn = false;
+        console.log("Logout", user.LoggedIn, user);
     }
 
 
@@ -73,7 +91,7 @@ function LoginApp() {
                 {(user.id !== "") ? (
                     <div className="welcome">
                         <LoggedInUser.Provider value={user}>
-                        <App />
+                            <App />
                         </LoggedInUser.Provider>
                         <br />
                         {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
@@ -83,15 +101,13 @@ function LoginApp() {
                     <LoginForm Login={Login} error={error} />
                 )}
             </div>
-            {/* <div>
-                {(isLoggedIn == false) ? (
-                    <Button className="right-navbar">
-                        <NavLink to='/Register'>Register</NavLink>
-                    </Button>
-                ) : (
-                    <h4></h4>
-                )}
-            </div> */}
+            {(!user.LoggedIn) ? (
+                <Button className="right-navbar">
+                    <NavLink to='/Register'>Register</NavLink>
+                </Button>
+            ) : (
+                <h4> </h4>
+            )}
         </div>
     );
 }

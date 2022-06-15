@@ -5,6 +5,7 @@ const User = ({ users, deleteUser }) => {
         return (
             <div className="user" key={user.id}>
                 <div>Name: {user.name} </div>
+                <div>NickName: {user.nickname} </div>
                 <div>Age: {user.age} </div>
                 <div>Gender: {user.gender} </div>
                 <button onClick={() => { deleteUser(user.id) }}>Delete User</button>

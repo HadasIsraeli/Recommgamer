@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import joystick from '../assets/joystick.png';
 
 function LoginForm({ Login, error }) {
-    const [details, setDetails] = useState({ name: "", id: "", password: "" });
+    const [details, setDetails] = useState({ name: "", id: "", nickname: "", type: "", LoggedIn: false });
 
     const submitHandler = e => {
         e.preventDefault();
@@ -13,6 +13,7 @@ function LoginForm({ Login, error }) {
 
     return (
         <form onSubmit={submitHandler}>
+            <h1 className="headline">Welcome Back!</h1>
             <div className="form-inner">
                 <h2 className="form-title">Login</h2>
                 {/* <br /> */}
@@ -22,9 +23,13 @@ function LoginForm({ Login, error }) {
                     <lable htmlFor="name">Name:</lable>
                     <input type="text" name="name" id="name" onChange={e => setDetails({ ...details, name: e.target.value })} value={details.name} />
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                     <lable htmlFor="name">ID:</lable>
                     <input type="number" name="id" id="id" onChange={e => setDetails({ ...details, id: e.target.value })} value={details.id} />
+                </div> */}
+                <div className="form-group">
+                    <lable htmlFor="name">NickName:</lable>
+                    <input type="text" name="nickname" id="nickname" onChange={e => setDetails({ ...details, nickname: e.target.value })} value={details.nickname} />
                 </div>
                 <div className="form-group">
                     <lable htmlFor="password">Password:</lable>
