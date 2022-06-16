@@ -8,19 +8,22 @@ body {
 
   background: rgb(0, 0, 0);
   border-bottom-color: aqua;
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: Comic Sans MS, Comic Sans, cursive; */
+  font-family: 'Amarante', cursive;
 }
 
 code {
   /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace; */
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: Comic Sans MS, Comic Sans, cursive; */
+  font-family: 'Amarante', cursive;
 }
 
 button {
   color: #ffffff;
   background-color: #2e2828;
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: Comic Sans MS, Comic Sans, cursive; */
+  font-family: 'Amarante', cursive;
   border: 1px solid rgb(117 117 123);
   margin: 10px;
   box-shadow: 0 2px 6px 1px #7a7f8373;
