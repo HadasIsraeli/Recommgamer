@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import controller from '../assets/controller.png';
-import { LoggedInUser } from '../LoginApp'
+import { LoggedInUser } from '../LoginApp';
 
 function WelcomePage() {
   //desplaying the users information - name, nickname, age, gender, search history, etc.

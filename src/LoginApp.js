@@ -20,7 +20,7 @@ function LoginApp() {
         id: "123456789",
         password: "Admin12345!",
         type: "manager",
-        LoggedIn: "",
+        LoggedIn: false,
         gender: "female",
         age: "27"
     }
@@ -31,7 +31,7 @@ function LoginApp() {
         id: "12345",
         password: "basic12345",
         type: "basic",
-        LoggedIn: "",
+        LoggedIn: false,
         gender: "male",
         age: "25"
     }
