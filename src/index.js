@@ -15,7 +15,7 @@ ReactDOM.render(
   <Router history={history}>
     <Switch>
       <Route exact path='/' component={LoginApp} />
-      <Route path='/Register' component={Register} />
+      <Route exact path='/Register' component={Register} />
       <Route exact path='/' component={App} />
     </Switch>
    </Router>

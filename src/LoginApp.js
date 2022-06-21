@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import LoginForm from './components/LoginForm';
 import { withRouter } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { LoggedInUser } from './LoggedInUser';
 
 
 import App from './App';
 
 
-export const LoggedInUser = React.createContext();
+// export const LoggedInUser = React.createContext();
 
 function LoginApp() {
 
@@ -36,7 +37,15 @@ function LoginApp() {
         age: "25"
     }
 
-    const [user, setUser] = useState({ name: "", id: "", nickname: "", type: "", LoggedIn: false });
+    const [user, setUser] = useState({
+        name: "",
+        id: "",
+        nickname: "",
+        type: "",
+        LoggedIn: false,
+        gender: '',
+        age: ""
+    });
     const [error, SetError] = useState("");
 
 
@@ -53,7 +62,7 @@ function LoginApp() {
                 gender: adminUser.gender,
                 age: adminUser.age
             });
-            this.props.history.push('/');
+            // this.props.history.push('/');
             // isLoggedIn = true;
             console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
         }
@@ -78,19 +87,28 @@ function LoginApp() {
     }
 
     const Logout = () => {
-        setUser({ name: "", id: "", nickname: "", type: "", LoggedIn: false });
+        setUser({
+            name: "",
+            id: "",
+            nickname: "",
+            type: "",
+            LoggedIn: false,
+            gender: '',
+            age: ""
+        });
         // this.props.history.push('/');
         // isLoggedIn = false;
         console.log("Logout", user.LoggedIn, user);
     }
 
+    const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
     return (
         <div className="App">
             <div>
                 {(user.id !== "") ? (
                     <div className="welcome">
-                        <LoggedInUser.Provider value={user}>
+                        <LoggedInUser.Provider value={value}>
                             <App />
                         </LoggedInUser.Provider>
                         <br />

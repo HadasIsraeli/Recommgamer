@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import controller from '../assets/controller.png';
-import { LoggedInUser } from '../LoginApp';
+import { LoggedInUser } from '../LoggedInUser';
 
 function WelcomePage() {
   //desplaying the users information - name, nickname, age, gender, search history, etc.
-  const user = useContext(LoggedInUser);
+  const { user } = useContext(LoggedInUser);
   let user_type = user.type;
   console.log('The User Is: ', user_type, user);
 
@@ -17,7 +17,11 @@ function WelcomePage() {
         <div>NickName: {user.nickname} </div>
         <div>Age: {user.age} </div>
         <div>Gender: {user.gender} </div>
-        <div>Search History: nothing for now :P </div>
+        {(user.type == 'manager') ? (
+          <div> </div>
+        ) : (
+          <div>Search History: nothing for now :P </div>
+        )}
       </div>
       <div className="welcome-game"><img src={controller} alt="computer-game" className="welcome-img" /></div>
     </div>

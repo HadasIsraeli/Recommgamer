@@ -48,9 +48,9 @@ button {
 }
 
 .welcome-img {
-  width: 300px;
-  height: 300px;
-  padding-bottom: 10px;
+  width: 200px;
+  height: 200px;
+  /* padding-bottom: 10px; */
   margin: 10px;
 }
 

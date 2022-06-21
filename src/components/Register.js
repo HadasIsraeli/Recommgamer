@@ -1,12 +1,21 @@
-import React, { useState, useContext } from 'react';
-import { LoggedInUser } from '../LoginApp';
+import React, { useState } from 'react';
+import { LoggedInUser } from '../LoggedInUser';
 import AddUser from './AddUser';
 
 
 function Register() {
-
-    const logged_user = useContext(LoggedInUser);
-    console.log('The User Is: ', logged_user);
+    const [user, setUser] = useState({
+        name: "",
+        id: "",
+        nickname: "",
+        type: "",
+        LoggedIn: false,
+        gender: '',
+        age: ""
+    });
+    // const { logged_user, setUser } = useContext(LoggedInUser);
+    // const { user } = useContext(LoggedInUser);
+    // console.log('The User Is: ', user);
 
     const state = {
         users: [
@@ -22,25 +31,39 @@ function Register() {
         ]
     };
 
-    const [users_list, setState] = useState({ users: [] });
+    const [users_list, setState] = useState({ users: state.users });
 
-    const addUser = (user) => {
-        console.log(user);
-        user.id = Math.random();
-        user.type = 'basic';
-        user.LoggedIn = true;
-        let users = [...state.users, user];
+    const addUser = (new_user) => {
+        console.log(new_user);
+        new_user.id = Math.random();
+        new_user.type = 'basic';
+        new_user.LoggedIn = true;
+        let users = [...state.users, new_user];
         setState({
             users: users
         });
-        console.log('users list: ',users_list);
+        setUser(new_user
+            //     {
+            //     name: new_user.name,
+            //     nickname: new_user.nickname,
+            //     type: new_user.type,
+            //     id: new_user.id,
+            //     LoggedIn: true,
+            //     gender: new_user.gender,
+            //     age: new_user.age
+            // }
+        );
+        console.log('users list: ', new_user, users_list);
         //add with write to json 
     }
-
+    // const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+    console.log('The User Is: ', user);
 
     return (
         <div className="App">
-            <AddUser addUser={addUser} />
+            <LoggedInUser.Provider value={{user, setUser}}>
+                <AddUser addUser={addUser} />
+            </LoggedInUser.Provider>
         </div>
     );
 }

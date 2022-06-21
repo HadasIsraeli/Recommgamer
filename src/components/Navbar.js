@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
-import { LoggedInUser } from '../LoginApp'
+import { LoggedInUser } from '../LoggedInUser';
 
 function Navbar() {
 
-    const user = useContext(LoggedInUser);
+    const { user } = useContext(LoggedInUser);
     let user_type = user.type;
     console.log('The User Is: ', user_type, user);
 
@@ -26,7 +26,7 @@ function Navbar() {
         )
     }
     if (user_type === 'basic') {
-        console.log('The User Is: ', user_type);
+        // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">
