@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { LoggedInUser } from '../LoggedInUser';
 import AddUser from './AddUser';
-
+import App from '../App';
 
 function Register() {
     const [user, setUser] = useState({
@@ -37,7 +37,7 @@ function Register() {
         console.log(new_user);
         new_user.id = Math.random();
         new_user.type = 'basic';
-        new_user.LoggedIn = true;
+        // new_user.LoggedIn = true;
         let users = [...state.users, new_user];
         setState({
             users: users
@@ -56,14 +56,46 @@ function Register() {
         console.log('users list: ', new_user, users_list);
         //add with write to json 
     }
-    // const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+    const value = useMemo(() => ({ user, setUser }), [user, setUser]);
     console.log('The User Is: ', user);
+
+    const Logout = () => {
+        setState({
+            name: "",
+            id: "",
+            nickname: "",
+            type: "",
+            LoggedIn: false,
+            gender: '',
+            age: ""
+        });
+        setUser(state);
+        // this.props.history.push('/');
+        // isLoggedIn = false;
+        console.log("Logout", user.LoggedIn, user);
+    }
 
     return (
         <div className="App">
-            <LoggedInUser.Provider value={{user, setUser}}>
-                <AddUser addUser={addUser} />
-            </LoggedInUser.Provider>
+            {(user.LoggedIn === false) ? (
+
+
+                <div>
+                    <LoggedInUser.Provider value={value}>
+                        <AddUser addUser={addUser} />
+                    </LoggedInUser.Provider>
+                </div>
+            ) : (
+                <div className="welcome">
+                    <h1>HHHHH</h1>
+                    <div className="welcome">
+                        <LoggedInUser.Provider value={value}>
+                            <App />
+                        </LoggedInUser.Provider>
+                        <button className="logout-button" onClick={Logout}>Logout</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

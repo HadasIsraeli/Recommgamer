@@ -7,9 +7,10 @@ function Navbar() {
 
     const { user } = useContext(LoggedInUser);
     let user_type = user.type;
+    let logged_in = user.LoggedIn;
     console.log('The User Is: ', user_type, user);
 
-    if (user_type === 'manager') {
+    if ((user_type === 'manager') && (logged_in === true)) {
         // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">
@@ -25,7 +26,7 @@ function Navbar() {
             </nav>
         )
     }
-    if (user_type === 'basic') {
+    if ((user_type === 'basic') && (logged_in === true)) {
         // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">

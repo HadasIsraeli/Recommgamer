@@ -17,7 +17,7 @@ function WelcomePage() {
         <div>NickName: {user.nickname} </div>
         <div>Age: {user.age} </div>
         <div>Gender: {user.gender} </div>
-        {(user.type == 'manager') ? (
+        {(user.type === 'manager') ? (
           <div> </div>
         ) : (
           <div>Search History: nothing for now :P </div>

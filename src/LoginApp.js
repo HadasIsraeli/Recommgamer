@@ -5,15 +5,9 @@ import { Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { LoggedInUser } from './LoggedInUser';
 
-
 import App from './App';
 
-
-// export const LoggedInUser = React.createContext();
-
 function LoginApp() {
-
-    // let isLoggedIn = false;
 
     const adminUser = {
         name: "adminUser",
@@ -62,8 +56,6 @@ function LoginApp() {
                 gender: adminUser.gender,
                 age: adminUser.age
             });
-            // this.props.history.push('/');
-            // isLoggedIn = true;
             console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
         }
         if (details.name === basicUser.name && details.nickname === basicUser.nickname && details.password === basicUser.password) {
@@ -76,11 +68,9 @@ function LoginApp() {
                 gender: basicUser.gender,
                 age: basicUser.age
             });
-            // isLoggedIn = true;
             console.log('basic user Logged in!  isLoggedIn:', user.LoggedIn, user);
         }
         else {
-            // isLoggedIn = false;
             console.log('Details do not match!');
             SetError('Details do not match! Please Register :) ');
         }
@@ -96,8 +86,6 @@ function LoginApp() {
             gender: '',
             age: ""
         });
-        // this.props.history.push('/');
-        // isLoggedIn = false;
         console.log("Logout", user.LoggedIn, user);
     }
 
