@@ -3,7 +3,13 @@ import { Button } from 'react-bootstrap';
 import joystick from '../assets/joystick.png';
 
 function LoginForm({ Login, error }) {
-    const [details, setDetails] = useState({ name: "", id: "", nickname: "", type: "", LoggedIn: false });
+    const [details, setDetails] = useState({
+        name: "",
+        id: "",
+        nickname: "",
+        type: "",
+        LoggedIn: false
+    });
 
     const submitHandler = e => {
         e.preventDefault();
@@ -11,12 +17,12 @@ function LoginForm({ Login, error }) {
         Login(details);
     }
 
+    console.log('LoginForm state', details);
+
     return (
         <form onSubmit={submitHandler}>
-            <h1 className="headline">Welcome Back!</h1>
             <div className="form-inner">
                 <h2 className="form-title">Login</h2>
-                {/* <br /> */}
                 {(error !== "") ? (
                     <div className="error">{error}</div>) : ""}
                 <div className="form-group">
@@ -36,9 +42,8 @@ function LoginForm({ Login, error }) {
                     <input type="password" name="password" id="password" onChange={e => setDetails({ ...details, password: e.target.value })} value={details.password} />
                 </div>
                 <Button className="submit-button" type="submit" value="LOGIN">Login</Button>
-                {/* <br /> */}
+
                 <div className="img-game"><img src={joystick} alt="joystick" className='img' /></div>
-                {/* <input type="submit" value="LOGIN" className='App'/> */}
             </div>
         </form>
     )

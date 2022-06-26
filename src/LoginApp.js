@@ -2,12 +2,13 @@ import React, { useState, useMemo } from 'react';
 import LoginForm from './components/LoginForm';
 import { withRouter } from "react-router-dom";
 import { Button } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { LoggedInUser } from './LoggedInUser';
 
 import App from './App';
 
 function LoginApp() {
+    let history = useHistory();
 
     const adminUser = {
         name: "adminUser",
@@ -41,7 +42,7 @@ function LoginApp() {
         age: ""
     });
     const [error, SetError] = useState("");
-
+    console.log('The User Is: ', user);
 
     const Login = details => {
         console.log(details);
@@ -86,6 +87,7 @@ function LoginApp() {
             gender: '',
             age: ""
         });
+        history.push('/');
         console.log("Logout", user.LoggedIn, user);
     }
 
@@ -108,9 +110,12 @@ function LoginApp() {
                 )}
             </div>
             {(!user.LoggedIn) ? (
-                <Button className="right-navbar">
-                    <NavLink to='/Register'>Register</NavLink>
-                </Button>
+                <div>
+                    <h1 className="headline">Welcome Back!</h1>
+                    <Button className="right-navbar">
+                        <NavLink to='/Register'>Register</NavLink>
+                    </Button>
+                </div>
             ) : (
                 <h4> </h4>
             )}

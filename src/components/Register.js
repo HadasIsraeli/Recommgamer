@@ -2,8 +2,12 @@ import React, { useState, useMemo } from 'react';
 import { LoggedInUser } from '../LoggedInUser';
 import AddUser from './AddUser';
 import App from '../App';
+import { useHistory,NavLink } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function Register() {
+    let history = useHistory();
+
     const [user, setUser] = useState({
         name: "",
         id: "",
@@ -13,9 +17,6 @@ function Register() {
         gender: '',
         age: ""
     });
-    // const { logged_user, setUser } = useContext(LoggedInUser);
-    // const { user } = useContext(LoggedInUser);
-    // console.log('The User Is: ', user);
 
     const state = {
         users: [
@@ -37,27 +38,19 @@ function Register() {
         console.log(new_user);
         new_user.id = Math.random();
         new_user.type = 'basic';
-        // new_user.LoggedIn = true;
+        new_user.LoggedIn = true;
         let users = [...state.users, new_user];
         setState({
             users: users
         });
-        setUser(new_user
-            //     {
-            //     name: new_user.name,
-            //     nickname: new_user.nickname,
-            //     type: new_user.type,
-            //     id: new_user.id,
-            //     LoggedIn: true,
-            //     gender: new_user.gender,
-            //     age: new_user.age
-            // }
-        );
+        setUser(new_user);
         console.log('users list: ', new_user, users_list);
         //add with write to json 
+        
+
     }
     const value = useMemo(() => ({ user, setUser }), [user, setUser]);
-    console.log('The User Is: ', user);
+    console.log('The User Is: ', user,users_list);
 
     const Logout = () => {
         setState({
@@ -69,25 +62,25 @@ function Register() {
             gender: '',
             age: ""
         });
-        setUser(state);
-        // this.props.history.push('/');
-        // isLoggedIn = false;
+        // setUser(state);
+        history.push('/');
         console.log("Logout", user.LoggedIn, user);
     }
 
     return (
         <div className="App">
             {(user.LoggedIn === false) ? (
-
-
                 <div>
-                    <LoggedInUser.Provider value={value}>
-                        <AddUser addUser={addUser} />
-                    </LoggedInUser.Provider>
+                    <h1 className="headline">Hello New Friend!</h1>
+                    <Button className="right-navbar">
+                        <NavLink to='/'>Login</NavLink>
+                    </Button>
+                    {/* <LoggedInUser.Provider value={value}> */}
+                    <AddUser addUser={addUser} />
+                    {/* </LoggedInUser.Provider> */}
                 </div>
             ) : (
                 <div className="welcome">
-                    <h1>HHHHH</h1>
                     <div className="welcome">
                         <LoggedInUser.Provider value={value}>
                             <App />
