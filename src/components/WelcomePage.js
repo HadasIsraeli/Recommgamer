@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import controller from '../assets/controller.png';
-import { LoggedInUser } from '../LoggedInUser';
+import { SearchContext } from '../LoggedInUser';
 
 function WelcomePage() {
   //desplaying the users information - name, nickname, age, gender, search history, etc.
-  const { user } = useContext(LoggedInUser);
+  const { user, setUser } = useContext(SearchContext);
   let user_type = user.type;
   console.log('The User Is: ', user_type, user);
 

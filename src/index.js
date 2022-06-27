@@ -13,12 +13,15 @@ const history = createBrowserHistory();
 // 
 ReactDOM.render(
   <Router history={history}>
-    <Switch>
-      <Route exact path='/' component={LoginApp} />
+    {/* <Switch> */}
+      <App />
+
+
+      {/* <Route exact path='/LoginApp' component={LoginApp} />
       <Route exact path='/Register' component={Register} />
-      <Route exact path='/' component={App} />
-    </Switch>
-   </Router>
+      <Route exact path='/App' component={App} /> */}
+    {/* </Switch> */}
+  </Router>
   ,
   document.getElementById('root')
 );

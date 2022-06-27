@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo,useContext } from 'react';
 import LoginForm from './components/LoginForm';
 import { withRouter } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
-import { LoggedInUser } from './LoggedInUser';
+import { SearchContext } from './LoggedInUser';
 
 import App from './App';
 
@@ -32,15 +32,16 @@ function LoginApp() {
         age: "25"
     }
 
-    const [user, setUser] = useState({
-        name: "",
-        id: "",
-        nickname: "",
-        type: "",
-        LoggedIn: false,
-        gender: '',
-        age: ""
-    });
+    const { user, setUser } = useContext(SearchContext);
+    // const [user, setUser] = useState({
+    //     name: "",
+    //     id: "",
+    //     nickname: "",
+    //     type: "",
+    //     LoggedIn: false,
+    //     gender: '',
+    //     age: ""
+    // });
     const [error, SetError] = useState("");
     console.log('The User Is: ', user);
 
@@ -58,6 +59,7 @@ function LoginApp() {
                 age: adminUser.age
             });
             console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
+            history.push('/WelcomePage');
         }
         if (details.name === basicUser.name && details.nickname === basicUser.nickname && details.password === basicUser.password) {
             setUser({
@@ -70,6 +72,7 @@ function LoginApp() {
                 age: basicUser.age
             });
             console.log('basic user Logged in!  isLoggedIn:', user.LoggedIn, user);
+            history.push('/WelcomePage');
         }
         else {
             console.log('Details do not match!');
@@ -96,25 +99,24 @@ function LoginApp() {
     return (
         <div className="App">
             <div>
-                {(user.id !== "") ? (
-                    <div className="welcome">
-                        <LoggedInUser.Provider value={value}>
-                            <App />
-                        </LoggedInUser.Provider>
-                        <br />
-                        {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-                        <button className="logout-button" onClick={Logout}>Logout</button>
-                    </div>
-                ) : (
+                {/* {(user.id !== "") ? ( */}
+                     {/* <div className="welcome">
+                         <LoggedInUser.Provider value={value}>
+                             <App />
+                         </LoggedInUser.Provider>
+                         <br />
+                         <button className="logout-button" onClick={Logout}>Logout</button>
+                     </div> */}
+                {/* ) : ( */}
                     <LoginForm Login={Login} error={error} />
-                )}
+                {/* )} */}
             </div>
             {(!user.LoggedIn) ? (
                 <div>
                     <h1 className="headline">Welcome Back!</h1>
-                    <Button className="right-navbar">
+                    {/* <Button className="right-navbar">
                         <NavLink to='/Register'>Register</NavLink>
-                    </Button>
+                    </Button> */}
                 </div>
             ) : (
                 <h4> </h4>

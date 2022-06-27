@@ -1,24 +1,42 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { withRouter } from "react-router-dom";
-import { LoggedInUser } from '../LoggedInUser';
+import { withRouter,useHistory } from "react-router-dom";
+import { SearchContext } from '../LoggedInUser';
 
 function Navbar() {
 
-    const { user } = useContext(LoggedInUser);
+    const { user, setUser } = useContext(SearchContext);
     let user_type = user.type;
     let logged_in = user.LoggedIn;
     console.log('The User Is: ', user_type, user);
+
+    let history = useHistory();
+
+    const Logout = () => {
+        setUser({
+            name: "",
+            id: "",
+            nickname: "",
+            type: "",
+            LoggedIn: false,
+            gender: '',
+            age: ""
+        });
+        history.push('/');
+        console.log("Logout", user.LoggedIn, user);
+    }
 
     if ((user_type === 'manager') && (logged_in === true)) {
         // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">
-                    <Link className="brand-logo" to="/">Game Searcher</Link>
+                    <Link className="brand-logo" to="/WelcomePage">Game Searcher</Link>
                     <div className="right-navbar">
                         {/* <NavLink to='/Home'>Search Game</NavLink> */}
                         <NavLink to='/UsersPage'>Users</NavLink>
+
+                        <button className="logout-button" onClick={Logout}>Logout</button>
                         {/* <NavLink to='/Register'>Register</NavLink>
                         <NavLink to='/Login'>Login</NavLink> */}
                     </div>
@@ -31,9 +49,11 @@ function Navbar() {
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">
-                    <Link className="brand-logo" to="/">Game Searcher</Link>
+                    <Link className="brand-logo" to="/WelcomePage">Game Searcher</Link>
                     <div className="right-navbar">
                         <NavLink to='/Home'>Search Game</NavLink>
+
+                        <button className="logout-button" onClick={Logout}>Logout</button>
                         {/* <NavLink to='/UsersPage'>Users</NavLink> */}
                         {/* <NavLink to='/Register'>Register</NavLink> */}
                         {/* <NavLink to='/Login'>Login</NavLink> */}
@@ -42,19 +62,22 @@ function Navbar() {
             </nav>
         )
     }
-    // return (
-    //     <nav className="nav-wrapper blue darken-3">
-    //         <div className="navbar-container">
-    //             <Link className="brand-logo" to="/">Game Searcher</Link>
-    //             <div className="right-navbar">
-    //                 <NavLink to='/Home'>Search Game</NavLink>
-    //                 <NavLink to='/UsersPage'>Users</NavLink>
-    //                 <NavLink to='/Register'>Register</NavLink>
-    //                 <NavLink to='/Login'>Login</NavLink>
-    //             </div>
-    //         </div>
-    //     </nav>
-    // )
+    else {
+
+        return (
+            <nav className="nav-wrapper blue darken-3">
+                <div className="navbar-container">
+                    {/* <Link className="brand-logo" to="/">Game Searcher</Link> */}
+                    <div className="right-navbar">
+                        {/* <NavLink to='/Home'>Search Game</NavLink> */}
+                        {/* <NavLink to='/UsersPage'>Users</NavLink> */}
+                        <NavLink to='/Register'>Register</NavLink>
+                        <NavLink to='/'>Login</NavLink>
+                    </div>
+                </div>
+            </nav>
+        )
+    }
 }
 
 export default withRouter(Navbar);

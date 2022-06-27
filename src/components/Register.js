@@ -1,22 +1,22 @@
-import React, { useState, useMemo } from 'react';
-import { LoggedInUser } from '../LoggedInUser';
+import React, { useState, useMemo, useContext } from 'react';
+import { SearchContext } from '../LoggedInUser';
 import AddUser from './AddUser';
 import App from '../App';
-import { useHistory,NavLink } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 function Register() {
     let history = useHistory();
-
-    const [user, setUser] = useState({
-        name: "",
-        id: "",
-        nickname: "",
-        type: "",
-        LoggedIn: false,
-        gender: '',
-        age: ""
-    });
+    const { user, setUser } = useContext(SearchContext);
+    // const [user, setUser] = useState({
+    //     name: "",
+    //     id: "",
+    //     nickname: "",
+    //     type: "",
+    //     LoggedIn: false,
+    //     gender: '',
+    //     age: ""
+    // });
 
     const state = {
         users: [
@@ -46,11 +46,11 @@ function Register() {
         setUser(new_user);
         console.log('users list: ', new_user, users_list);
         //add with write to json 
-        
+        history.push('/WelcomePage');
 
     }
     const value = useMemo(() => ({ user, setUser }), [user, setUser]);
-    console.log('The User Is: ', user,users_list);
+    console.log('The User Is: ', user, users_list);
 
     const Logout = () => {
         setState({
@@ -69,17 +69,17 @@ function Register() {
 
     return (
         <div className="App">
-            {(user.LoggedIn === false) ? (
-                <div>
-                    <h1 className="headline">Hello New Friend!</h1>
-                    <Button className="right-navbar">
-                        <NavLink to='/'>Login</NavLink>
-                    </Button>
-                    {/* <LoggedInUser.Provider value={value}> */}
-                    <AddUser addUser={addUser} />
-                    {/* </LoggedInUser.Provider> */}
-                </div>
-            ) : (
+            {/* {(user.LoggedIn === false) ? ( */}
+            <div>
+                <h1 className="headline">Hello New Friend!</h1>
+                {/* <Button className="right-navbar">
+                    <NavLink to='/'>Login</NavLink>
+                </Button> */}
+                {/* <LoggedInUser.Provider value={value}> */}
+                <AddUser addUser={addUser} />
+                {/* </LoggedInUser.Provider> */}
+            </div>
+            {/* ) : (
                 <div className="welcome">
                     <div className="welcome">
                         <LoggedInUser.Provider value={value}>
@@ -88,7 +88,7 @@ function Register() {
                         <button className="logout-button" onClick={Logout}>Logout</button>
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     );
 }
