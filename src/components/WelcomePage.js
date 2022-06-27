@@ -8,7 +8,6 @@ function WelcomePage() {
   let user_type = user.type;
   console.log('The User Is: ', user_type, user);
 
-
   return (
     <div className="App">
       <h1 className="headline">Welcome to Game Searcher!</h1>
@@ -27,6 +26,5 @@ function WelcomePage() {
     </div>
   );
 }
-
 
 export default WelcomePage;

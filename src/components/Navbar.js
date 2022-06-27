@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { withRouter,useHistory } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 import { SearchContext } from '../LoggedInUser';
 
 function Navbar() {
@@ -33,12 +33,8 @@ function Navbar() {
                 <div className="navbar-container">
                     <Link className="brand-logo" to="/WelcomePage">Game Searcher</Link>
                     <div className="right-navbar">
-                        {/* <NavLink to='/Home'>Search Game</NavLink> */}
                         <NavLink to='/UsersPage'>Users</NavLink>
-
                         <button className="logout-button" onClick={Logout}>Logout</button>
-                        {/* <NavLink to='/Register'>Register</NavLink>
-                        <NavLink to='/Login'>Login</NavLink> */}
                     </div>
                 </div>
             </nav>
@@ -52,25 +48,17 @@ function Navbar() {
                     <Link className="brand-logo" to="/WelcomePage">Game Searcher</Link>
                     <div className="right-navbar">
                         <NavLink to='/Home'>Search Game</NavLink>
-
                         <button className="logout-button" onClick={Logout}>Logout</button>
-                        {/* <NavLink to='/UsersPage'>Users</NavLink> */}
-                        {/* <NavLink to='/Register'>Register</NavLink> */}
-                        {/* <NavLink to='/Login'>Login</NavLink> */}
                     </div>
                 </div>
             </nav>
         )
     }
     else {
-
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">
-                    {/* <Link className="brand-logo" to="/">Game Searcher</Link> */}
                     <div className="right-navbar">
-                        {/* <NavLink to='/Home'>Search Game</NavLink> */}
-                        {/* <NavLink to='/UsersPage'>Users</NavLink> */}
                         <NavLink to='/Register'>Register</NavLink>
                         <NavLink to='/'>Login</NavLink>
                     </div>

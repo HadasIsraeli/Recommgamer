@@ -1,11 +1,9 @@
-import React, { useState, useMemo,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import LoginForm from './components/LoginForm';
 import { withRouter } from "react-router-dom";
-import { Button } from 'react-bootstrap';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { SearchContext } from './LoggedInUser';
 
-import App from './App';
 
 function LoginApp() {
     let history = useHistory();
@@ -33,15 +31,6 @@ function LoginApp() {
     }
 
     const { user, setUser } = useContext(SearchContext);
-    // const [user, setUser] = useState({
-    //     name: "",
-    //     id: "",
-    //     nickname: "",
-    //     type: "",
-    //     LoggedIn: false,
-    //     gender: '',
-    //     age: ""
-    // });
     const [error, SetError] = useState("");
     console.log('The User Is: ', user);
 
@@ -80,47 +69,10 @@ function LoginApp() {
         }
     }
 
-    const Logout = () => {
-        setUser({
-            name: "",
-            id: "",
-            nickname: "",
-            type: "",
-            LoggedIn: false,
-            gender: '',
-            age: ""
-        });
-        history.push('/');
-        console.log("Logout", user.LoggedIn, user);
-    }
-
-    const value = useMemo(() => ({ user, setUser }), [user, setUser]);
-
     return (
         <div className="App">
-            <div>
-                {/* {(user.id !== "") ? ( */}
-                     {/* <div className="welcome">
-                         <LoggedInUser.Provider value={value}>
-                             <App />
-                         </LoggedInUser.Provider>
-                         <br />
-                         <button className="logout-button" onClick={Logout}>Logout</button>
-                     </div> */}
-                {/* ) : ( */}
-                    <LoginForm Login={Login} error={error} />
-                {/* )} */}
-            </div>
-            {(!user.LoggedIn) ? (
-                <div>
-                    <h1 className="headline">Welcome Back!</h1>
-                    {/* <Button className="right-navbar">
-                        <NavLink to='/Register'>Register</NavLink>
-                    </Button> */}
-                </div>
-            ) : (
-                <h4> </h4>
-            )}
+            <LoginForm Login={Login} error={error} />
+            <h1 className="headline">Welcome Back!</h1>
         </div>
     );
 }

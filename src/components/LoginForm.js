@@ -29,10 +29,6 @@ function LoginForm({ Login, error }) {
                     <lable htmlFor="name">Name:</lable>
                     <input type="text" name="name" id="name" onChange={e => setDetails({ ...details, name: e.target.value })} value={details.name} />
                 </div>
-                {/* <div className="form-group">
-                    <lable htmlFor="name">ID:</lable>
-                    <input type="number" name="id" id="id" onChange={e => setDetails({ ...details, id: e.target.value })} value={details.id} />
-                </div> */}
                 <div className="form-group">
                     <lable htmlFor="name">NickName:</lable>
                     <input type="text" name="nickname" id="nickname" onChange={e => setDetails({ ...details, nickname: e.target.value })} value={details.nickname} />

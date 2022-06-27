@@ -55,10 +55,7 @@ function AddUser({ addUser }) {
                 <div className="img-game"><img src={joystick} alt="computer-game" className='img' /></div>
             </div>
         </form>
-
-
     )
 }
-
 
 export default AddUser;

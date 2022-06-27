@@ -1,22 +1,11 @@
-import React, { useState, useMemo, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { SearchContext } from '../LoggedInUser';
 import AddUser from './AddUser';
-import App from '../App';
-import { useHistory, NavLink } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 function Register() {
     let history = useHistory();
     const { user, setUser } = useContext(SearchContext);
-    // const [user, setUser] = useState({
-    //     name: "",
-    //     id: "",
-    //     nickname: "",
-    //     type: "",
-    //     LoggedIn: false,
-    //     gender: '',
-    //     age: ""
-    // });
 
     const state = {
         users: [
@@ -45,53 +34,21 @@ function Register() {
         });
         setUser(new_user);
         console.log('users list: ', new_user, users_list);
-        //add with write to json 
+
         history.push('/WelcomePage');
 
-    }
-    const value = useMemo(() => ({ user, setUser }), [user, setUser]);
-    console.log('The User Is: ', user, users_list);
+        //add with write to json 
 
-    const Logout = () => {
-        setState({
-            name: "",
-            id: "",
-            nickname: "",
-            type: "",
-            LoggedIn: false,
-            gender: '',
-            age: ""
-        });
-        // setUser(state);
-        history.push('/');
-        console.log("Logout", user.LoggedIn, user);
     }
+
+    console.log('The User Is: ', user, users_list);
 
     return (
         <div className="App">
-            {/* {(user.LoggedIn === false) ? ( */}
-            <div>
-                <h1 className="headline">Hello New Friend!</h1>
-                {/* <Button className="right-navbar">
-                    <NavLink to='/'>Login</NavLink>
-                </Button> */}
-                {/* <LoggedInUser.Provider value={value}> */}
-                <AddUser addUser={addUser} />
-                {/* </LoggedInUser.Provider> */}
-            </div>
-            {/* ) : (
-                <div className="welcome">
-                    <div className="welcome">
-                        <LoggedInUser.Provider value={value}>
-                            <App />
-                        </LoggedInUser.Provider>
-                        <button className="logout-button" onClick={Logout}>Logout</button>
-                    </div>
-                </div>
-            )} */}
+            <h1 className="headline">Hello New Friend!</h1>
+            <AddUser addUser={addUser} />
         </div>
     );
 }
-
 
 export default Register;

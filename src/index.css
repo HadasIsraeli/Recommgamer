@@ -167,9 +167,10 @@ button {
 }
 
 .input-search {
-  width: 200px;
+  width: 300px;
   height: 32px;
   margin: 20px;
+  border-radius: 10px;
 }
 
 .headline {
