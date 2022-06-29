@@ -19,13 +19,15 @@ import React, { useState } from 'react';
 
 
 function Home() {
-  const state = {
-    // selectedOption: null,
-    gameName: "",
-    // id: ""
-  };
+  // const state = {
+  //   // selectedOption: null,
+  //   gameName: "",
+  //   // id: ""
+  // };
 
-  const [game_name, setName] = useState(document.getElementById('gameName').value);
+  const [state, setState] = useState("");
+
+  const [game_name, setName] = useState("");
   // handleChange = (selectedOption) => {
   //   this.setState({ selectedOption }, () =>
   //   console.log(`Option selected:`, this.state.selectedOption)
@@ -34,19 +36,21 @@ function Home() {
 
   const handleInput = (gameName) => {
 
-    this.setState({ gameName }, () =>
-      console.log(`Search Input:`, state.gameName.target.value)
-    );
+    // setState({ gameName }, () =>
+    //   console.log(`Search Input:`, state.gameName.target.value)
+    // );
+    setState(gameName);
+
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     setName(document.getElementById('gameName').value);
 
     let search_game_obj = {
       // keyword: this.state.selectedOption.value,
-      game_name: this.state.gameName.target.value,
+      game_name: state
       // uid:"345678912345",
     }
 
