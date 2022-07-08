@@ -1,22 +1,6 @@
+import { stringify } from '@firebase/util';
 import React, { useState } from 'react';
-// import User from './User';
-// import AddUser from './AddUser';
-
-// import Select from 'react-select';
-
-// const options = [
-//   { value: 'Indie', label: 'Indie' },
-//   { value: 'Action', label: 'Action' },
-//   { value: 'Adventure', label: 'Adventure' },
-//   { value: 'Casual', label: 'Casual' },
-//   { value: 'Simulation', label: 'Simulation' },
-//   { value: 'RPG', label: 'RPG' },
-//   { value: 'Strategy', label: 'Strategy' },
-//   { value: 'Atmospheric', label: 'Atmospheric' },
-//   { value: 'Early Access', label: 'Early Access' },
-//   { value: 'Free to Play', label: 'Free to Play' },
-// ];
-
+import $ from 'jquery';
 
 function Home() {
   // const state = {
@@ -28,6 +12,9 @@ function Home() {
   const [state, setState] = useState("");
 
   const [game_name, setName] = useState("");
+
+  const [Results, setResults] = useState();
+  const [recommended, setrecommended] = useState();
   // handleChange = (selectedOption) => {
   //   this.setState({ selectedOption }, () =>
   //   console.log(`Option selected:`, this.state.selectedOption)
@@ -57,6 +44,39 @@ function Home() {
     document.getElementById('gameName').value = '';
     console.log('gameName', search_game_obj.game_name, game_name);
     //add with write to json 
+    const data_send = {
+      "user input": {
+        "game_name": game_name
+      }
+    }
+    console.log('data_send', data_send);
+
+    $.ajax({
+      url: 'http://127.0.0.1:3000/responer',
+      type: 'post',
+      contentType: "application/json; charset=utf-8",
+      cache: false,
+      dataType: 'json',
+      data: JSON.stringify(data_send),
+      success: function (dataReceived) {
+        dataReceived = JSON.parse(dataReceived)
+        setResults(dataReceived);
+        setrecommended(dataReceived['recommended games']);
+        console.log('Results', Results,recommended);
+        console.log("The json response:", dataReceived)
+        console.log("User search uid:", dataReceived['uid'])
+        console.log("List of recommended games:",dataReceived['recommended games']) //list
+      },
+      error: function (xhr, thrownError) {
+        console.log("ERROR Status:", xhr.status, "-", thrownError)
+      }
+    });
+
+
+
+
+
+
   }
 
 
@@ -79,6 +99,7 @@ function Home() {
       </div>
       <div>
         <h4 className="headline">Search Results For : {game_name} </h4>
+        <p>{recommended}</p>
       </div>
     </div>
   );

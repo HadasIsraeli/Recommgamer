@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import joystick from '../assets/computer-game.png';
 
+
 function AddUser({ addUser }) {
 
     const [state, setState] = useState({
@@ -15,6 +16,7 @@ function AddUser({ addUser }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
 
         addUser(state);
         // console.log('Add user state', state);

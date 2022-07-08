@@ -2,6 +2,15 @@ import React, { useState, useContext } from 'react';
 import { SearchContext } from '../LoggedInUser';
 import AddUser from './AddUser';
 import { useHistory } from 'react-router-dom';
+import db from './firebase';
+import {
+    collection,
+    // getDocs,
+    addDoc,
+    // updateDoc,
+    // deleteDoc,
+    // doc,
+} from "firebase/firestore";
 
 function Register() {
     let history = useHistory();
@@ -22,6 +31,7 @@ function Register() {
     };
 
     const [users_list, setState] = useState({ users: state.users });
+    const usersCollectionRef = collection(db, "users");
 
     const addUser = (new_user) => {
         console.log(new_user);
@@ -34,12 +44,24 @@ function Register() {
         });
         setUser(new_user);
         console.log('users list: ', new_user, users_list);
+        createUser(new_user);
 
         history.push('/WelcomePage');
 
         //add with write to json 
-
     }
+
+    const createUser = async (users) => {
+        await addDoc(usersCollectionRef, {
+            name: users.name,
+            id: users.id,
+            nickname: users.nickname,
+            type: users.type,
+            LoggedIn: users.LoggedIn,
+            gender: users.gender,
+            age: users.age,
+        });
+    };
 
     console.log('The User Is: ', user, users_list);
 
