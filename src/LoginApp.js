@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import { SearchContext } from './LoggedInUser';
 
-
 function LoginApp() {
     let history = useHistory();
 

@@ -11,7 +11,7 @@ const User = ({ users, deleteUser }) => {
                 <button onClick={() => { deleteUser(user.id) }}>Delete User</button>
             </div>
         )
-    })
+    });
 
     return (
         <div className="user-list">
