@@ -31,7 +31,8 @@ function Home() {
       <h2 className="headline">Search Your Next Game:</h2>
       <div className="form-search">
         <input className="input-search" type="text" placeholder="Enter Game Name" id="gameName" onChange={handleInput} />
-        <button className="submit-button" type="submit" onClick={handleSubmit}>Search</button>
+        {/* <button className="submit-button" type="submit" onClick={handleSubmit}>Search</button> */}
+        <button  class="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
       </div>
       <div>
         <h4 className="headline">Search Results For : {game_name} </h4>
