@@ -44,7 +44,6 @@ function Register() {
         });
         setUser(new_user);
         console.log('users list: ', new_user, users_list);
-        // createUser(new_user);
 
         addDoc(usersCollectionRef, {
             name: new_user.name,
