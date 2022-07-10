@@ -1,14 +1,16 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "@firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from '@firebase/firestore';
 
-const firebaseConfig  = {
-  apiKey: "AIzaSyDKQK-bsIKlJow8kQ0Cycg89tuhAQaLuTU",
-  authDomain: "recommgamer.firebaseapp.com",
-  projectId: "recommgamer",
-  storageBucket: "recommgamer.appspot.com",
-  messagingSenderId: "1043320632557",
-  appId: "1:1043320632557:web:9332b8521301d589fd48e4"
+const firebaseConfig = {
+  apiKey: "AIzaSyBIXXfFq9qe2SEoQ2G1aHev7ny0qLLlpxk",
+  authDomain: "recommgamer-611d0.firebaseapp.com",
+  projectId: "recommgamer-611d0",
+  storageBucket: "recommgamer-611d0.appspot.com",
+  messagingSenderId: "871935510675",
+  appId: "1:871935510675:web:05d6b04c90f3f9cd082566"
 };
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 

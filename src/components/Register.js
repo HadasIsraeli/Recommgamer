@@ -44,24 +44,21 @@ function Register() {
         });
         setUser(new_user);
         console.log('users list: ', new_user, users_list);
-        createUser(new_user);
+        // createUser(new_user);
+
+        addDoc(usersCollectionRef, {
+            name: new_user.name,
+            id: new_user.id,
+            nickname: new_user.nickname,
+            type: new_user.type,
+            gender: new_user.gender,
+            age: new_user.age,
+        });
 
         history.push('/WelcomePage');
 
-        //add with write to json 
     }
 
-    const createUser = async (users) => {
-        await addDoc(usersCollectionRef, {
-            name: users.name,
-            id: users.id,
-            nickname: users.nickname,
-            type: users.type,
-            LoggedIn: users.LoggedIn,
-            gender: users.gender,
-            age: users.age,
-        });
-    };
 
     console.log('The User Is: ', user, users_list);
 

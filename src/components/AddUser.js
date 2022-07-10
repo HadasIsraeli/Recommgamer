@@ -34,7 +34,7 @@ function AddUser({ addUser }) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="name">NicName:</label>
-                    <input type="text" name="nickname" id="nicname" onChange={e => setState({ ...state, nicname: e.target.value })} value={state.nicname} />
+                    <input type="text" name="nickname" id="nickname" onChange={e => setState({ ...state, nickname: e.target.value })} value={state.nickname} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="age">Age:</label>
