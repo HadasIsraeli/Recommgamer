@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const User = ({ users, deleteUser }) => {
     const userList = users.map(user => {
         return (

@@ -145,7 +145,7 @@ button {
 
 .user-list {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .user {
@@ -203,4 +203,4 @@ button {
 
 .bn31:hover .bn31span {
   background: transparent;
-}
+} 

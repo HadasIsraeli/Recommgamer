@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import joystick from '../assets/computer-game.png';
 
+
 function AddUser({ addUser }) {
 
     const [state, setState] = useState({
@@ -15,6 +16,7 @@ function AddUser({ addUser }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
 
         addUser(state);
         // console.log('Add user state', state);
@@ -32,7 +34,7 @@ function AddUser({ addUser }) {
                 </div>
                 <div className="form-group">
                     <label htmlFor="name">NicName:</label>
-                    <input type="text" name="nickname" id="nicname" onChange={e => setState({ ...state, nicname: e.target.value })} value={state.nicname} />
+                    <input type="text" name="nickname" id="nickname" onChange={e => setState({ ...state, nickname: e.target.value })} value={state.nickname} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="age">Age:</label>
