@@ -158,7 +158,7 @@ button {
 
 .user-list {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .user {
@@ -177,3 +177,43 @@ button {
   color: #f25b39;
   margin: 20px;
 }
+
+.form-search {
+  display: flex;
+  align-items: center;
+}
+
+
+.bn31 {
+  background-image: linear-gradient(to right, #74041c 0%, #ffa633 100%);
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: #ffcec3;
+  display: block;
+  height: 35px;
+  font-size: 15px;
+  padding: 4px;
+  position: relative;
+  text-decoration: none;
+  width: 100px;
+  z-index: 2;
+}
+
+.bn31:hover {
+  color: #fff;
+}
+
+.bn31 .bn31span {
+  align-items: center;
+  background: #0e0e10;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background 0.5s ease;
+  width: 100%;
+}
+
+.bn31:hover .bn31span {
+  background: transparent;
+} 

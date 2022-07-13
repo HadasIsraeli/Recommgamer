@@ -62,10 +62,10 @@ function Home() {
         dataReceived = JSON.parse(dataReceived)
         setResults(dataReceived);
         setrecommended(dataReceived['recommended games']);
-        console.log('Results', Results,recommended);
+        console.log('Results', Results, recommended);
         console.log("The json response:", dataReceived)
         console.log("User search uid:", dataReceived['uid'])
-        console.log("List of recommended games:",dataReceived['recommended games']) //list
+        console.log("List of recommended games:", dataReceived['recommended games']) //list
       },
       error: function (xhr, thrownError) {
         console.log("ERROR Status:", xhr.status, "-", thrownError)
@@ -85,7 +85,7 @@ function Home() {
 
   return (
     <div className="App">
-      <h2 className="headline">Search Your Next Game:</h2>
+      <h1 className="headline">Search Your Next Game:</h1>
       <div className="form-search">
         <input className="input-search" type="text" placeholder="Enter Game Name" id="gameName" onChange={handleInput} />
 
@@ -95,10 +95,14 @@ function Home() {
             options={options}
           /> */}
 
-        <button className="submit-button" type="submit" onClick={handleSubmit}>Search</button>
+        {/* <button className="submit-button" type="submit" onClick={handleSubmit}>Search</button> */}
+        <button class="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
       </div>
       <div>
-        <h4 className="headline">Search Results For : {game_name} </h4>
+        <h2 className="headline">Search Results For : {game_name} </h2>
+        {/* {recommended.map(game=>{
+          <p>Game Name: {game}</p>
+        })} */}
         <p>{recommended}</p>
       </div>
     </div>
