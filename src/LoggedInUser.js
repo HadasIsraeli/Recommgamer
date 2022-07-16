@@ -3,7 +3,7 @@
 // export const LoggedInUser = createContext({
 //     name: "",
 //     id: "",
-//     nickname: "",
+//     userName: "",
 //     type: "",
 //     LoggedIn: false,
 //     gender: '',
@@ -22,7 +22,7 @@ export const SearchContextWrapper = ({ children }) => {
     const [user, setUser] = useState({
         name: "",
         id: "",
-        nickname: "",
+        userName: "",
         type: "",
         LoggedIn: false,
         gender: '',

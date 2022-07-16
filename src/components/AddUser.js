@@ -7,7 +7,7 @@ function AddUser({ addUser }) {
     const [state, setState] = useState({
         name: "",
         id: "",
-        nickname: "",
+        userName: "",
         type: "",
         LoggedIn: null,
         gender: '',
@@ -33,8 +33,8 @@ function AddUser({ addUser }) {
                     <input type="text" name="name" id="name" onChange={e => setState({ ...state, name: e.target.value })} value={state.name} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="name">NicName:</label>
-                    <input type="text" name="nickname" id="nickname" onChange={e => setState({ ...state, nickname: e.target.value })} value={state.nickname} />
+                    <label htmlFor="name">userName:</label>
+                    <input type="text" name="userName" id="userName" onChange={e => setState({ ...state, userName: e.target.value })} value={state.userName} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="age">Age:</label>

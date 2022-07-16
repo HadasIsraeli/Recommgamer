@@ -15,7 +15,7 @@ function App() {
   // const [user, setUser] = useState({
   //   name: "",
   //   id: "",
-  //   nickname: "",
+  //   userName: "",
   //   type: "",
   //   LoggedIn: false,
   //   gender: '',

@@ -37,7 +37,7 @@ function UsersPage() {
             <div className="user">
               {/* {" "} */}
               <h2>Name: {user.name}</h2>
-              <div>Nickname: {user.nickname} </div>
+              <div>userName: {user.userName} </div>
               <div>Age: {user.age} </div>
               <div>Gender: {user.gender} </div>
               <button onClick={() => { deleteUser(user.id) }}>Delete User</button>

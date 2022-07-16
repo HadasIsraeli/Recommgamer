@@ -3,14 +3,23 @@ import LoginForm from './components/LoginForm';
 import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import { SearchContext } from './LoggedInUser';
-
+import db from './components/firebase'
+import { collection, getDocs } from "firebase/firestore";
 
 function LoginApp() {
     let history = useHistory();
 
+
+    const [users, setUsers] = useState([]);// Puts users data in an array
+
+    const getUsers = async () => {          // Collects the data from FireStore and triggers  SetUsers.
+      const data = await getDocs(collection(db, "users"));
+      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+
     const adminUser = {
         name: "adminUser",
-        nickname: "admin",
+        userName: "admin",
         id: "123456789",
         password: "Admin12345!",
         type: "manager",
@@ -21,7 +30,7 @@ function LoginApp() {
 
     const basicUser = {
         name: "basicUser",
-        nickname: "basic",
+        userName: "basic",
         id: "12345",
         password: "basic12345",
         type: "basic",
@@ -33,40 +42,45 @@ function LoginApp() {
     const { user, setUser } = useContext(SearchContext);
     const [error, SetError] = useState("");
     console.log('The User Is: ', user);
-
+    getUsers();
     const Login = details => {
         console.log(details);
-
-        if (details.name === adminUser.name && details.nickname === adminUser.nickname && details.password === adminUser.password) {
-            setUser({
-                name: details.name,
-                nickname: details.nickname,
-                type: adminUser.type,
-                id: adminUser.id,
-                LoggedIn: true,
-                gender: adminUser.gender,
-                age: adminUser.age
-            });
-            console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
-            history.push('/WelcomePage');
-        }
-        if (details.name === basicUser.name && details.nickname === basicUser.nickname && details.password === basicUser.password) {
-            setUser({
-                name: details.name,
-                nickname: details.nickname,
-                type: basicUser.type,
-                id: basicUser.id,
-                LoggedIn: true,
-                gender: basicUser.gender,
-                age: basicUser.age
-            });
-            console.log('basic user Logged in!  isLoggedIn:', user.LoggedIn, user);
-            history.push('/WelcomePage');
+        users.map((users) => {
+        if (details.name === users.name && details.userName === users.userName && details.password === users.password) {
+            if (users.type == "admin") {
+                console.log("I'm admin");
+                setUser({
+                    name: details.name,
+                    userName: details.userName,
+                    type: adminUser.type,
+                    id: adminUser.id,
+                    LoggedIn: true,
+                    gender: adminUser.gender,
+                    age: adminUser.age
+                });
+                console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
+                history.push('/WelcomePage');
+            }
+            else if (users.type == "basic") {
+                console.log("I'm basic");
+                setUser({
+                    name: details.name,
+                    userName: details.userName,
+                    type: basicUser.type,
+                    id: basicUser.id,
+                    LoggedIn: true,
+                    gender: basicUser.gender,
+                    age: basicUser.age
+                });
+                console.log('basic user Logged in!  isLoggedIn:', user.LoggedIn, user);
+                history.push('/WelcomePage');
+            }
         }
         else {
             console.log('Details do not match!');
             SetError('Details do not match! Please Register :) ');
         }
+    });
     }
 
     return (

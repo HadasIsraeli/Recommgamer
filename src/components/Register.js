@@ -19,13 +19,13 @@ function Register() {
     const state = {
         users: [
             {
-                name: 'Hadas', nickname: 'Dusa', age: 26, gender: 'blue', id: 1, password: null, mail: null, LoggedIn: false
+                name: 'Hadas', userName: 'Dusa', age: 26, gender: 'blue', id: 1, password: null, mail: null, LoggedIn: false
             },
             {
-                name: 'Inbar', nickname: 'Bari', age: 27, gender: 'pink', id: 2, password: null, mail: null, LoggedIn: false
+                name: 'Inbar', userName: 'Bari', age: 27, gender: 'pink', id: 2, password: null, mail: null, LoggedIn: false
             },
             {
-                name: 'Grisha', nickname: 'Greg', age: 29, gender: 'RED', id: 3, password: null, mail: null, LoggedIn: false
+                name: 'Grisha', userName: 'Greg', age: 29, gender: 'RED', id: 3, password: null, mail: null, LoggedIn: false
             }
         ]
     };
@@ -48,10 +48,12 @@ function Register() {
         addDoc(usersCollectionRef, {
             name: new_user.name,
             id: new_user.id,
-            nickname: new_user.nickname,
+            userName: new_user.userName,
             type: new_user.type,
             gender: new_user.gender,
             age: new_user.age,
+            password: new_user.password,
+            mail: new_user.mail,
         });
 
         history.push('/WelcomePage');

@@ -6,7 +6,7 @@ function LoginForm({ Login, error }) {
     const [details, setDetails] = useState({
         name: "",
         id: "",
-        nickname: "",
+        userName: "",
         type: "",
         LoggedIn: false
     });
@@ -30,8 +30,8 @@ function LoginForm({ Login, error }) {
                     <input type="text" name="name" id="name" onChange={e => setDetails({ ...details, name: e.target.value })} value={details.name} />
                 </div>
                 <div className="form-group">
-                    <lable htmlFor="name">NickName:</lable>
-                    <input type="text" name="nickname" id="nickname" onChange={e => setDetails({ ...details, nickname: e.target.value })} value={details.nickname} />
+                    <lable htmlFor="name">userName:</lable>
+                    <input type="text" name="userName" id="userName" onChange={e => setDetails({ ...details, userName: e.target.value })} value={details.userName} />
                 </div>
                 <div className="form-group">
                     <lable htmlFor="password">Password:</lable>

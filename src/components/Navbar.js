@@ -16,7 +16,7 @@ function Navbar() {
         setUser({
             name: "",
             id: "",
-            nickname: "",
+            userName: "",
             type: "",
             LoggedIn: false,
             gender: '',

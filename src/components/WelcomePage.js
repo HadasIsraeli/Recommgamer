@@ -3,7 +3,7 @@ import controller from '../assets/controller.png';
 import { SearchContext } from '../LoggedInUser';
 
 function WelcomePage() {
-  //desplaying the users information - name, nickname, age, gender, search history, etc.
+  //desplaying the users information - name, userName, age, gender, search history, etc.
   const { user, setUser } = useContext(SearchContext);
   let user_type = user.type;
   console.log('The User Is: ', user_type, user);
@@ -13,7 +13,7 @@ function WelcomePage() {
       <h1 className="headline">Welcome to Game Searcher!</h1>
       <div className="user">
         <div>Name: {user.name} </div>
-        <div>NickName: {user.nickname} </div>
+        <div>userName: {user.userName} </div>
         <div>Age: {user.age} </div>
         <div>Gender: {user.gender} </div>
         {(user.type === 'manager') ? (
