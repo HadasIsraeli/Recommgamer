@@ -26,7 +26,7 @@ function Navbar() {
         console.log("Logout", user.LoggedIn, user);
     }
 
-    if ((user_type === 'manager') && (logged_in === true)) {
+    if ((user_type === "admin") && (logged_in === true)) {
         // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">

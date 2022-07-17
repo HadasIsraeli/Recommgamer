@@ -17,7 +17,7 @@ function LoginForm({ Login, error }) {
         Login(details);
     }
 
-    console.log('LoginForm state', details);
+    // console.log('LoginForm state', details);
 
     return (
         <form onSubmit={submitHandler}>
@@ -25,12 +25,12 @@ function LoginForm({ Login, error }) {
                 <h2 className="form-title">Login</h2>
                 {(error !== "") ? (
                     <div className="error">{error}</div>) : ""}
-                <div className="form-group">
+                {/* <div className="form-group">
                     <lable htmlFor="name">Name:</lable>
                     <input type="text" name="name" id="name" onChange={e => setDetails({ ...details, name: e.target.value })} value={details.name} />
-                </div>
+                </div> */}
                 <div className="form-group">
-                    <lable htmlFor="name">userName:</lable>
+                    <lable htmlFor="name">UserName:</lable>
                     <input type="text" name="userName" id="userName" onChange={e => setDetails({ ...details, userName: e.target.value })} value={details.userName} />
                 </div>
                 <div className="form-group">

@@ -1,18 +1,3 @@
-// import { createContext } from "react";
-
-// export const LoggedInUser = createContext({
-//     name: "",
-//     id: "",
-//     userName: "",
-//     type: "",
-//     LoggedIn: false,
-//     gender: '',
-//     age: ""
-// });
-
-
-
-
 import { createContext, useState } from "react";
 
 export const SearchContext = createContext();
