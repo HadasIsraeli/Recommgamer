@@ -33,18 +33,14 @@ function Home() {
       console.log('Your search is empty :/ , please enter a game name! ', state, is_empty);
     } else {
       setEmpty(false);
-      // setName(document.getElementById('gameName').value);
+      
       setName(state);
 
-      // let search_game_obj = {
-      //   // keyword: this.state.selectedOption.value,
-      //   game_name: state
-      //   // uid:"345678912345",
-      // }
+     
 
       document.getElementById('gameName').value = '';
       console.log('gameName', state, game_name);
-      //add with write to json 
+      
       const data_send = {
         "user input": {
           "game_name": state
@@ -92,8 +88,6 @@ function Home() {
 
       <div className="form-search">
         <input className="input-search" type="text" placeholder="Enter Game Name" id="gameName" onChange={handleInput} />
-
-        {/* <button className="submit-button" type="submit" onClick={handleSubmit}>Search</button> */}
         <button class="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
       </div>
       <div>
@@ -107,10 +101,7 @@ function Home() {
           ? <h2 className="headline">Based on reviews, people who liked ~ {game_name} ~ also liked the following games: </h2>
           : <p></p>
         }
-        {/* <h2 className="headline">Based on reviews, people who liked {game_name} also liked the following games: </h2> */}
-
-        {/* <h2 className="headline">Games you my like based on your search : {game_name} </h2> */}
-
+      
         {/* {recommended.map(game=>{
           <p>Game Name: {game}</p>
         })} */}
