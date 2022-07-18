@@ -10,8 +10,9 @@ export const SearchContextWrapper = ({ children }) => {
         userName: "",
         type: "",
         LoggedIn: false,
-        gender: '',
-        age: ""
+        gender: "",
+        age: "",
+        mail:""
       });
 
     return (

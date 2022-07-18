@@ -1,31 +1,39 @@
 import React, { useState } from 'react';
-import User from './User';
+// import User from './User';
 import db from './firebase';
-import {
-  collection,
-  getDocs,
-} from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 
 function UsersPage() {
+  const usersCollectionRef = collection(db, "users");
 
   const [users, setUsers] = useState([]);// Puts users data in an array
 
   const getUsers = async () => {          // Collects the data from FireStore and triggers  SetUsers.
     const data = await getDocs(collection(db, "users"));
+    console.log('firebase data', data);
     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }
-
-
-  const deleteUser = (id) => {
-    //console.log(id);
-    let users = this.state.users.filter(user => {
-      return user.id !== id
-    });
-    this.setState({
-      users: users
-    })
+  if (users.length < 1) {
+    console.log('users0', users);
+    getUsers();//call the getUsers method and trigger the collect data from FireStore.
   }
-  getUsers(); //call the getUsers method and trigger the collect data from FireStore.
+  else {
+    console.log('users1', users);
+  }
+
+  const deleteUser = (delete_user) => {
+    console.log("delete_user: ", delete_user.id);
+    let users_list = users.filter(user => {
+      return user.id !== delete_user.id
+    });
+    console.log("new users_list", users_list);
+    setUsers(users_list);
+    
+    //delete user from firebase by the delete_user.id
+    // deleteDoc(doc(db, usersCollectionRef, delete_user.id)); //<<<<<< not working
+  }
+
+  console.log(users);
 
   return (
     <div className="App">
@@ -37,14 +45,15 @@ function UsersPage() {
             <div className="user">
               {/* {" "} */}
               <h2>Name: {user.name}</h2>
-              <div>userName: {user.userName} </div>
+              <div>UserName: {user.userName} </div>
               <div>Age: {user.age} </div>
               <div>Gender: {user.gender} </div>
-              <button onClick={() => { deleteUser(user.id) }}>Delete User</button>
+              <div>Mail: {user.mail} </div>
+              <button onClick={() => { deleteUser(user) }}>Delete User</button>
             </div>
           )
         })}
-        </div>
+      </div>
       {/* <User deleteUser={this.deleteUser} users={this.state.users} /> */}
     </div>
   );

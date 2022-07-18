@@ -53,9 +53,9 @@ function LoginApp() {
     const Login = details => {
         console.log(details);
         users.map((user, index) => {
-            console.log('user index', index);
             // if ((details.name === user.name) && (details.userName === user.userName) && (details.password === user.password) && (!user_match)) {
             if ((details.userName === user.userName) && (details.password === user.password) && (!user_match)) {
+                console.log('user index', index);
 
                 console.log("I'm ", user.type);
                 setUser({
@@ -65,12 +65,13 @@ function LoginApp() {
                     id: user.id,
                     LoggedIn: true,
                     gender: user.gender,
-                    age: user.age
+                    age: user.age,
+                    mail: user.mail
                 });
                 user_match = true;
                 console.log('Logged in!  isLoggedIn:', user.LoggedIn, user, ' user_match:', user_match);
                 history.push('/WelcomePage');
-
+                return;
                 // if (user.type == "admin") {
                 //     console.log("I'm admin");
                 //     setUser({
