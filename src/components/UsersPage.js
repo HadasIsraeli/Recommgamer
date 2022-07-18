@@ -4,7 +4,6 @@ import db from './firebase';
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 
 function UsersPage() {
-  const usersCollectionRef = collection(db, "users");
 
   const [users, setUsers] = useState([]);// Puts users data in an array
 
@@ -28,9 +27,9 @@ function UsersPage() {
     });
     console.log("new users_list", users_list);
     setUsers(users_list);
-    
+
     //delete user from firebase by the delete_user.id
-    // deleteDoc(doc(db, usersCollectionRef, delete_user.id)); //<<<<<< not working
+    deleteDoc(doc(db, "users", delete_user.id)); //<<<<<< not working
   }
 
   console.log(users);
