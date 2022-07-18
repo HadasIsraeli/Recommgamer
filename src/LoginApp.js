@@ -17,27 +17,6 @@ function LoginApp() {
         setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
 
-    // const adminUser = {
-    //     name: "adminUser",
-    //     userName: "admin",
-    //     id: "123456789",
-    //     password: "Admin12345!",
-    //     type: "manager",
-    //     LoggedIn: false,
-    //     gender: "female",
-    //     age: "27"
-    // }
-
-    // const basicUser = {
-    //     name: "basicUser",
-    //     userName: "basic",
-    //     id: "12345",
-    //     password: "basic12345",
-    //     type: "basic",
-    //     LoggedIn: false,
-    //     gender: "male",
-    //     age: "25"
-    // }
 
     const { user, setUser } = useContext(SearchContext);
     const [error, SetError] = useState("");
@@ -53,7 +32,6 @@ function LoginApp() {
     const Login = details => {
         console.log(details);
         users.map((user, index) => {
-            // if ((details.name === user.name) && (details.userName === user.userName) && (details.password === user.password) && (!user_match)) {
             if ((details.userName === user.userName) && (details.password === user.password) && (!user_match)) {
                 console.log('user index', index);
 
@@ -72,34 +50,6 @@ function LoginApp() {
                 console.log('Logged in!  isLoggedIn:', user.LoggedIn, user, ' user_match:', user_match);
                 history.push('/WelcomePage');
                 return;
-                // if (user.type == "admin") {
-                //     console.log("I'm admin");
-                //     setUser({
-                //         name: details.name,
-                //         userName: details.userName,
-                //         type: adminUser.type,
-                //         id: adminUser.id,
-                //         LoggedIn: true,
-                //         gender: adminUser.gender,
-                //         age: adminUser.age
-                //     });
-                //     console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
-                //     history.push('/WelcomePage');
-                // }
-                // else if (user.type == "basic") {
-                //     console.log("I'm basic");
-                //     setUser({
-                //         name: details.name,
-                //         userName: details.userName,
-                //         type: basicUser.type,
-                //         id: basicUser.id,
-                //         LoggedIn: true,
-                //         gender: basicUser.gender,
-                //         age: basicUser.age
-                //     });
-                //     console.log('basic user Logged in!  isLoggedIn:', user.LoggedIn, user);
-                //     history.push('/WelcomePage');
-                // }
             }
             else {
                 if ((index == users.length - 1) && (user_match == false)) {
