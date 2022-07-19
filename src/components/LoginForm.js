@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import joystick from '../assets/joystick.png';
 
 function LoginForm({ Login, error }) {
-    const [details, setDetails] = useState({
+    const [details, setDetails] = useState({        //variable to save the login input details
         name: "",
         id: "",
         userName: "",
@@ -11,7 +11,7 @@ function LoginForm({ Login, error }) {
         LoggedIn: false
     });
 
-    const submitHandler = e => {
+    const submitHandler = e => {//send the login input details to LoginApp component when submit
         e.preventDefault();
 
         Login(details);

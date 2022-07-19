@@ -29,7 +29,7 @@ function UsersPage() {
     setUsers(users_list);
 
     //delete user from firebase by the delete_user.id
-    deleteDoc(doc(db, "users", delete_user.id)); //<<<<<< not working
+    deleteDoc(doc(db, "users", delete_user.id)); 
   }
 
   console.log(users);
@@ -53,7 +53,6 @@ function UsersPage() {
           )
         })}
       </div>
-      {/* <User deleteUser={this.deleteUser} users={this.state.users} /> */}
     </div>
   );
 }

@@ -11,7 +11,7 @@ function Register() {
     let user_match = false;
     const { user, setUser } = useContext(SearchContext);
 
-    const [users_list, setList] = useState([]);
+    const [users_list, setList] = useState([]);// Puts users data in an array
     const [error, SetError] = useState("");
 
     const getUsers = async () => {          // Collects the data from FireStore and triggers  SetUsers.
@@ -32,24 +32,23 @@ function Register() {
     const addUser = (new_user) => {
         SetError('');
         //check if inputs are valid
-        if (!validator.isAlpha(new_user.name)) {
+        if (!validator.isAlpha(new_user.name)) { //validate name input to alphabetic characters only
             console.log('Details do not match! invalid name');
             SetError('Invalid Name! Please input letters only');
         }
 
-        else if (!validator.isEmail(new_user.mail)) {
+        else if (!validator.isEmail(new_user.mail)) {  //validate mail input to proper mail form
             console.log('Details do not match! invalid email');
             SetError('Sorry! try somthing like "foo@bar.com"...');
         }
 
-        else if (!validator.isStrongPassword(new_user.password, {
-            minLength: 8, minLowercase: 1,
-            minUppercase: 1, minNumbers: 1, minSymbols: 1
+        else if (!validator.isStrongPassword(new_user.password, { //validate password input to have the conditions
+            minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1    //conditions to valid password
         })) {
             console.log('Details do not match! invalid password');
             SetError('Invalid password! minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1');
         } else {
-            //check if there is no userName as such 
+            //check if there is no userName as such
             users_list.map((user, index) => {
                 if (new_user.userName === user.userName) {
                     user_match = true;
@@ -57,7 +56,7 @@ function Register() {
                     SetError('Sorry! There is alraedy a userName ' + new_user.userName + ' in the system! try somthing else...');
                 }
                 else {
-                    if ((index == users_list.length - 1) && (user_match == false)) {
+                    if ((index == users_list.length - 1) && (user_match == false)) { //creating a new user if validating passed and the is no maching userName
                         console.log('the new_user details are Validated', new_user);
                         new_user.id = Math.random();
                         new_user.type = 'basic';
@@ -66,17 +65,17 @@ function Register() {
                         setUser(new_user);
 
                         addDoc(usersCollectionRef, {
-                            name: new_user.name, //only letters
+                            name: new_user.name, 
                             id: new_user.id,
-                            userName: new_user.userName,// any but uniq
+                            userName: new_user.userName,
                             type: new_user.type,
-                            gender: new_user.gender,//any
-                            age: new_user.age,//min age 13
-                            password: new_user.password,//6 chars 1 cap 1 sim
+                            gender: new_user.gender,
+                            age: new_user.age,
+                            password: new_user.password,
                             mail: new_user.mail,
                         });
 
-                        history.push('/WelcomePage');
+                        history.push('/WelcomePage'); //sending the new user to the main page
                     }
                 }
             });

@@ -4,7 +4,7 @@ import joystick from '../assets/computer-game.png';
 
 function AddUser({ addUser, error }) {
 
-    const [state, setState] = useState({
+    const [state, setState] = useState({        //variable to save the registration input details
         name: "",
         id: "",
         userName: "",
@@ -14,9 +14,8 @@ function AddUser({ addUser, error }) {
         age: "",
     });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e) => {//send the registration input details to Register component when submit
         e.preventDefault();
-
 
         addUser(state);
         // console.log('Add user state', state);

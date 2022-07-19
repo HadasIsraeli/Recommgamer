@@ -18,12 +18,12 @@ function LoginApp() {
     }
 
 
-    const { user, setUser } = useContext(SearchContext);
+    const { user, setUser } = useContext(SearchContext);//global users, to know who is logged in all the app pages
     const [error, SetError] = useState("");
 
     if (users.length < 1) {
         console.log('users0', users);
-        getUsers();
+        getUsers();//call the getUsers method and trigger the collect data from FireStore.
     }
     else {
         console.log('users1', users);
@@ -32,11 +32,11 @@ function LoginApp() {
     const Login = details => {
         console.log(details);
         users.map((user, index) => {
-            if ((details.userName === user.userName) && (details.password === user.password) && (!user_match)) {
+            if ((details.userName === user.userName) && (details.password === user.password) && (!user_match)) {// finding the matching user by userName & password
                 console.log('user index', index);
 
                 console.log("I'm ", user.type);
-                setUser({
+                setUser({                   //setting the global users details
                     name: user.name,
                     userName: user.userName,
                     type: user.type,
@@ -46,13 +46,13 @@ function LoginApp() {
                     age: user.age,
                     mail: user.mail
                 });
-                user_match = true;
+                user_match = true;// there is a mach 
                 console.log('Logged in!  isLoggedIn:', user.LoggedIn, user, ' user_match:', user_match);
                 history.push('/WelcomePage');
                 return;
             }
             else {
-                if ((index == users.length - 1) && (user_match == false)) {
+                if ((index == users.length - 1) && (user_match == false)) {//dispalying error if the user not exist
                     console.log('Details do not match!');
                     SetError('Details do not match! Please Register :) ');
                 }
