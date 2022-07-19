@@ -1,11 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import UsersPage from './components/UsersPage';
 import Register from './components/Register';
-import LoginApp from './LoginApp';
+import LoginApp from './components/LoginApp';
 import WelcomePage from './components/WelcomePage';
+
 import { SearchContextWrapper } from './LoggedInUser';
 
 function App() {
