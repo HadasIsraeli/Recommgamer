@@ -7,11 +7,12 @@ export const SearchContextWrapper = ({ children }) => {
     const [user, setUser] = useState({
         name: "",
         id: "",
-        nickname: "",
+        userName: "",
         type: "",
         LoggedIn: false,
-        gender: '',
-        age: ""
+        gender: "",
+        age: "",
+        mail: ""
     });
 
     return (

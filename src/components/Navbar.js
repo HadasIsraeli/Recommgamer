@@ -11,21 +11,21 @@ function Navbar() {
 
     let history = useHistory();
 
-    const Logout = () => {
+    const Logout = () => {      //set global user details to first state and logout
         setUser({
             name: "",
             id: "",
-            nickname: "",
+            userName: "",
             type: "",
             LoggedIn: false,
             gender: '',
             age: ""
         });
-        history.push('/');
+        history.push('/'); //sends the user to login page
         console.log("Logout", user.LoggedIn, user);
     }
 
-    if ((user_type === 'manager') && (logged_in === true)) {
+    if ((user_type === "admin") && (logged_in === true)) {  //dispalying navigation bar to admin type user
         // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">
@@ -39,7 +39,7 @@ function Navbar() {
             </nav>
         )
     }
-    if ((user_type === 'basic') && (logged_in === true)) {
+    if ((user_type === 'basic') && (logged_in === true)) {      //dispalying navigation bar to basic type user
         // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">
@@ -53,7 +53,7 @@ function Navbar() {
             </nav>
         )
     }
-    else {
+    else {      //dispalying navigation bar a user that is not logged in or registered
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">

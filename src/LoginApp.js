@@ -3,70 +3,64 @@ import LoginForm from './components/LoginForm';
 import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import { SearchContext } from './LoggedInUser';
+import db from './components/firebase'
+import { collection, getDocs } from "firebase/firestore";
 
 function LoginApp() {
     let history = useHistory();
 
-    const adminUser = {
-        name: "adminUser",
-        nickname: "admin",
-        id: "123456789",
-        password: "Admin12345!",
-        type: "manager",
-        LoggedIn: false,
-        gender: "female",
-        age: "27"
+    let user_match = false;
+    const [users, setUsers] = useState([]);// Puts users data in an array
+
+    const getUsers = async () => {          // Collects the data from FireStore and triggers  SetUsers.
+        const data = await getDocs(collection(db, "users"));
+        setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
 
-    const basicUser = {
-        name: "basicUser",
-        nickname: "basic",
-        id: "12345",
-        password: "basic12345",
-        type: "basic",
-        LoggedIn: false,
-        gender: "male",
-        age: "25"
-    }
 
-    const { user, setUser } = useContext(SearchContext);
+    const { user, setUser } = useContext(SearchContext);//global users, to know who is logged in all the app pages
     const [error, SetError] = useState("");
-    console.log('The User Is: ', user);
+
+    if (users.length < 1) {
+        console.log('users0', users);
+        getUsers();//call the getUsers method and trigger the collect data from FireStore.
+    }
+    else {
+        console.log('users1', users);
+    }
 
     const Login = details => {
         console.log(details);
+        users.map((user, index) => {
+            if ((details.userName === user.userName) && (details.password === user.password) && (!user_match)) {// finding the matching user by userName & password
+                console.log('user index', index);
 
-        if (details.name === adminUser.name && details.nickname === adminUser.nickname && details.password === adminUser.password) {
-            setUser({
-                name: details.name,
-                nickname: details.nickname,
-                type: adminUser.type,
-                id: adminUser.id,
-                LoggedIn: true,
-                gender: adminUser.gender,
-                age: adminUser.age
-            });
-            console.log('Admin Logged in!  isLoggedIn:', user.LoggedIn, user);
-            history.push('/WelcomePage');
-        }
-        if (details.name === basicUser.name && details.nickname === basicUser.nickname && details.password === basicUser.password) {
-            setUser({
-                name: details.name,
-                nickname: details.nickname,
-                type: basicUser.type,
-                id: basicUser.id,
-                LoggedIn: true,
-                gender: basicUser.gender,
-                age: basicUser.age
-            });
-            console.log('basic user Logged in!  isLoggedIn:', user.LoggedIn, user);
-            history.push('/WelcomePage');
-        }
-        else {
-            console.log('Details do not match!');
-            SetError('Details do not match! Please Register :) ');
-        }
+                console.log("I'm ", user.type);
+                setUser({                   //setting the global users details
+                    name: user.name,
+                    userName: user.userName,
+                    type: user.type,
+                    id: user.id,
+                    LoggedIn: true,
+                    gender: user.gender,
+                    age: user.age,
+                    mail: user.mail
+                });
+                user_match = true;// there is a mach 
+                console.log('Logged in!  isLoggedIn:', user.LoggedIn, user, ' user_match:', user_match);
+                history.push('/WelcomePage');
+                return;
+            }
+            else {
+                if ((index == users.length - 1) && (user_match == false)) {//dispalying error if the user not exist
+                    console.log('Details do not match!');
+                    SetError('Details do not match! Please Register :) ');
+                }
+            }
+        });
     }
+
+    console.log('The User Is: ', user);
 
     return (
         <div className="App">
