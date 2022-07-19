@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import LoginForm from './components/LoginForm';
+import LoginForm from './LoginForm';
 import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import { SearchContext } from './LoggedInUser';
-import db from './components/firebase'
+import { SearchContext } from '../LoggedInUser';
+import db from './firebase'
 import { collection, getDocs } from "firebase/firestore";
 
 function LoginApp() {
