@@ -1,46 +1,44 @@
 import { stringify } from '@firebase/util';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import $ from 'jquery';
+import { SearchContext } from '../LoggedInUser';
+import { updateDoc, doc, arrayUnion } from "firebase/firestore";
+import db from './firebase';
 
 function Home() {
+  let uid, recommended_games, dataReceived, search_history, game_review;
+  // let review_open = false;
+  const { user, setUser } = useContext(SearchContext);
 
-  // let history={
-  //   search:"",
-  //   res:[]
-  // }
-
-  const [is_empty,setEmpty] = useState(false);
-
+  const [is_empty, setEmpty] = useState(false);
   const [state, setState] = useState("");
-
-  const [game_name, setName] = useState("");
+  const [game_name_search, setName] = useState("");
+  const [recommended, setRecommended] = useState("");
 
   const [Results, setResults] = useState();
-  const [recommended, setrecommended] = useState();
+  const [game_names_results, setGameNames] = useState();
+  const [game_review_results, setGameReviews] = useState();
+  const [review_open, setReviewOpen] = useState();
 
   const handleInput = (gameName) => {
-
     setState(gameName.target.value);
-
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setName(state);
 
-    if (!state) {
+    if (!state) {//if input is empty > dispalying error on screen
       setEmpty(true);
       console.log('Your search is empty :/ , please enter a game name! ', state, is_empty);
     } else {
+      setGameNames("");
       setEmpty(false);
-      
       setName(state);
 
-     
-
       document.getElementById('gameName').value = '';
-      console.log('gameName', state, game_name);
-      
+      console.log('gameName', state, game_name_search);
+
       const data_send = {
         "user input": {
           "game_name": state
@@ -48,6 +46,7 @@ function Home() {
       }
       console.log('data_send', data_send);
 
+      //sending the game name to backend
       $.ajax({
         url: 'http://127.0.0.1:5000/responer',
         type: 'post',
@@ -55,18 +54,37 @@ function Home() {
         cache: false,
         dataType: 'json',
         data: JSON.stringify(data_send),
-        success: function (dataReceived) {
-          dataReceived = JSON.parse(dataReceived);
+        success: function (data) {
+          dataReceived = JSON.parse(data);
+          console.log("The json response:", dataReceived);
           // setState("");
-          setResults(dataReceived);
-          setrecommended(dataReceived['recommended games']);
-          console.log('Results', Results, recommended);
-          console.log("The json response:", dataReceived)
-          console.log("User search uid:", dataReceived['uid'])
-          console.log("List of recommended games:", dataReceived['recommended games']); //list
 
+          // console.log("User search uid:", dataReceived['uid'])
+          // console.log("List of recommended games:", dataReceived['recommended games']); //list
 
           // push history to firestore as 'History' 
+          uid = dataReceived["uid"];
+          console.log(uid);
+          recommended_games = dataReceived["recommended games"];
+          console.log("recommended_games:", recommended_games);
+          setResults(dataReceived);
+          setRecommended(recommended_games);
+          setGameNames(Object.keys(recommended_games));
+
+          search_history = {
+            "search_id": uid,
+            "game_names": Object.keys(recommended_games),
+            "search_input": game_name_search
+          }
+          console.log("history:", search_history);
+
+          const historyRef = doc(db, "users", user.id);
+          updateDoc(historyRef, {
+            History: arrayUnion(search_history)
+            // History: arrayUnion("hi")
+          });
+
+
         },
         error: function (xhr, thrownError) {
           console.log("ERROR Status:", xhr.status, "-", thrownError)
@@ -74,12 +92,24 @@ function Home() {
       });
       setState("");
     }
-
-
-
   }
 
+  const seeReviews = (game_name_review) => {
+    game_review = recommended[game_name_review].slice(0, 5);
+    console.log('game_name_review', game_name_review, game_review);
 
+    setGameReviews(game_review);
+    setReviewOpen(true);
+  }
+
+  const close = () => {
+    setGameReviews("");
+    setReviewOpen(false);
+  }
+
+  // console.log('Results', Results);
+  // console.log('recommended', recommended);
+  // console.log('game_names_results', game_names_results);
 
   return (
     <div className="App">
@@ -88,7 +118,7 @@ function Home() {
 
       <div className="form-search">
         <input className="input-search" type="text" placeholder="Enter Game Name" id="gameName" onChange={handleInput} />
-        <button class="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
+        <button className="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
       </div>
       <div>
         {(is_empty)
@@ -97,15 +127,36 @@ function Home() {
         }
       </div>
       <div>
-        {(game_name)
-          ? <h2 className="headline">Based on reviews, people who liked ~ {game_name} ~ also liked the following games: </h2>
-          : <p></p>
+        {(game_name_search)
+          ? <h2 className="headline">Based on reviews, people who liked ~ {game_name_search} ~ also liked the following games: </h2>
+          : <div></div>
         }
-      
-        {/* {recommended.map(game=>{
-          <p>Game Name: {game}</p>
-        })} */}
-        <p>{recommended}</p>
+      </div>
+      <div>
+        {(game_names_results) ? game_names_results.map((game, index) => {
+          return (
+            <div className="results">
+              <p> {index + 1}. {game}</p>
+              <button onClick={() => { seeReviews(game) }}>see reviews</button>
+            </div>
+          )
+        }) : <div className="user">Please wait...</div>}
+      </div>
+      <div>{(review_open)
+        ?
+        <div className="form-review">
+          <button onClick={() => { close() }}>close</button>
+          {(game_review_results)
+            ? game_review_results.map((game_review, index) => {
+              return (
+                <div>
+                  <p> {index + 1}. {game_review}</p>
+                </div>
+              )
+            }) : <p></p>
+          }
+        </div>
+        : <p></p>}
       </div>
     </div>
   );
