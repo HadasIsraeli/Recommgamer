@@ -19,7 +19,7 @@ button {
   border: 1px solid rgb(117 117 123);
   margin: 10px;
   box-shadow: 0 2px 6px 1px #7a7f8373;
-  border-radius:10px 0 10px 0;
+  border-radius: 10px 0 10px 0;
   padding: 5px;
   font-style: italic;
 }
@@ -27,7 +27,8 @@ button {
 .logout-button {
   bottom: 0;
   position: absolute;
-  left: 0; /*   right: 0*/
+  left: 0;
+  /*   right: 0*/
 }
 
 
@@ -67,7 +68,7 @@ button {
   align-items: center;
   flex-direction: column;
   align-content: center;
-  min-width: 50%;
+  min-width: 425px;
   background-color: rgb(90, 90, 90);
   position: absolute;
   left: 50%;
@@ -90,8 +91,12 @@ button {
   font-weight: bold;
   display: flex;
   justify-content: space-between;
-  min-width: 250px;
+  min-width: 270px;
   margin: 5px;
+}
+
+.results {
+  margin: 25px;
 }
 
 .user {
@@ -211,4 +216,25 @@ button {
 
 .bn31:hover .bn31span {
   background: transparent;
+}
+
+.form-review{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  min-width: 400px;
+  min-height: 500px;
+  background-color: rgb(90, 90, 90);
+  position: absolute;
+  left: 80%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px 0 20px 0;
+  margin: 20px 0 20px 0;
+  box-shadow: 0 2px 6px 2px #8e9092;
+  z-index: 999;
+  padding:20px;
 }
