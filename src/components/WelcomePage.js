@@ -13,8 +13,8 @@ function WelcomePage() {
     <div className="App">
       <h1 className="headline">Welcome to Game Searcher!</h1>
       <div className="user">
+        <h2>{user.userName} </h2>
         <div>Name: {user.name} </div>
-        <div>UserName: {user.userName} </div>
         <div>Age: {user.age} </div>
         <div>Gender: {user.gender} </div>
         <div>Mail: {user.mail} </div>

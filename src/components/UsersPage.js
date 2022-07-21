@@ -43,8 +43,8 @@ function UsersPage() {
 
             <div className="user">
               {/* {" "} */}
-              <h2>Name: {user.name}</h2>
-              <div>UserName: {user.userName} </div>
+              <h2>{user.userName} </h2>
+              <div>Name: {user.name}</div>
               <div>Age: {user.age} </div>
               <div>Gender: {user.gender} </div>
               <div>Mail: {user.mail} </div>
