@@ -16,7 +16,8 @@ function SearchPage() {
   const [game_name_search, setName] = useState("");
   const [recommended, setRecommended] = useState("");
 
-  const [Results, setResults] = useState();
+  const [not_exist, setNotExist] = useState(false);
+
   const [game_names_results, setGameNames] = useState();
   const [game_review_results, setGameReviews] = useState();
   const [review_open, setReviewOpen] = useState();
@@ -30,15 +31,17 @@ function SearchPage() {
     e.preventDefault();
     setName(state);
     setReviewOpen(false);
-
+    setNotExist(false);
     if (!state) {//if input is empty > dispalying error on screen
       setEmpty(true);
+
       console.log('Your search is empty :/ , please enter a game name! ', state, is_empty);
     } else {
       setGameNames("");
       setEmpty(false);
       setName(state);
       setLoad(true);
+      setNotExist(false);
       document.getElementById('gameName').value = '';
       // console.log('gameName', state, game_name_search);
 
@@ -60,46 +63,49 @@ function SearchPage() {
         success: function (data) {
           dataReceived = JSON.parse(data);
           console.log("The json response:", dataReceived);
-          // setState("");
+          if (dataReceived != 0) {
 
-          // console.log("User search uid:", dataReceived['uid'])
-          // console.log("List of recommended games:", dataReceived['recommended games']); //list
+            setNotExist(false);
+            // push history to firestore as 'History' 
+            uid = dataReceived["uid"];
+            console.log(uid);
+            recommended_games = dataReceived["recommended games"];
+            console.log("recommended_games:", recommended_games);
 
-          // push history to firestore as 'History' 
-          uid = dataReceived["uid"];
-          console.log(uid);
-          recommended_games = dataReceived["recommended games"];
-          console.log("recommended_games:", recommended_games);
-          setResults(dataReceived);
-          setRecommended(recommended_games);
-          setGameNames(Object.keys(recommended_games));
-          setLoad(false);
-          search_history = {
-            "search_id": uid,
-            "game_names": Object.keys(recommended_games),
-            "search_input": state
-          }
-          console.log("history:", search_history);
+            setRecommended(recommended_games);
+            setGameNames(Object.keys(recommended_games));
+            setLoad(false);
+            search_history = {
+              "search_id": uid,
+              "game_names": Object.keys(recommended_games),
+              "search_input": state
+            }
+            console.log("history:", search_history);
 
-          const historyRef = doc(db, "users", user.id);
-          updateDoc(historyRef, {
-            History: arrayUnion(search_history)
-            // History: arrayUnion("hi")
-          }).then(value => {
-            let user_history = [...user.history, search_history];
-            setUser({
-              name: user.name,
-              userName: user.userName,
-              type: user.type,
-              id: user.id,
-              LoggedIn: true,
-              gender: user.gender,
-              age: user.age,
-              mail: user.mail,
-              history: user_history
+            const historyRef = doc(db, "users", user.id);
+            updateDoc(historyRef, {
+              History: arrayUnion(search_history)
+              // History: arrayUnion("hi")
+            }).then(value => {
+              let user_history = [...user.history, search_history];
+              setUser({
+                name: user.name,
+                userName: user.userName,
+                type: user.type,
+                id: user.id,
+                LoggedIn: true,
+                gender: user.gender,
+                age: user.age,
+                mail: user.mail,
+                history: user_history
+              });
             });
-          });
-
+          } else {
+            setNotExist(true);
+            setName("");
+            setLoad(false);
+            setState("");
+          }
 
         },
         error: function (xhr, thrownError) {
@@ -112,8 +118,7 @@ function SearchPage() {
 
   const seeReviews = (game_name_review) => {
     game_review = recommended[game_name_review].slice(0, 5);
-    console.log('game_name_review', game_name_review, game_review);
-
+    // console.log('game_name_review', game_name_review, game_review);
     setGameReviews(game_review);
     setReviewOpen(true);
   }
@@ -139,6 +144,12 @@ function SearchPage() {
       <div>
         {(is_empty)
           ? <h2 className="headline">Your search is empty :/ , please enter a game name!</h2>
+          : <p></p>
+        }
+      </div>
+      <div>
+        {(not_exist)
+          ? <h2 className="headline">Sorry this game is not in our Data :/ , please enter a different game name!</h2>
           : <p></p>
         }
       </div>
