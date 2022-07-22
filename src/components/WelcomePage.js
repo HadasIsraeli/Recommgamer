@@ -7,6 +7,7 @@ function WelcomePage() {
   const { user, setUser } = useContext(SearchContext);
   let user_type = user.type;
   let user_history = user.history;
+  
   console.log('The User Is: ', user_type, user);
 
   return (
@@ -20,15 +21,18 @@ function WelcomePage() {
         <div>Mail: {user.mail} </div>
         {(user.type === 'admin') ? (
           <div> </div>
-        ) : (( (!user_history) )?(
+        ) : (((!user_history)) ? (
           <div>Search History: nothing for now :P </div>
-        ):(
-          <><div>History: </div><div>{user_history.map((search, index) => {
-                <div>
-                  <p>{index}</p>
-                  <p>{search}</p>
-                </div>;
-              })} </div></>
+        ) : (
+          <div>
+            <div>History: </div>
+            {/* <div>{user_history.map((search, index) => {
+              <div>
+                <p>{index}</p>
+                <p>{search}</p>
+              </div>;
+            })} </div> */}
+          </div>
         )
         )}
       </div>
