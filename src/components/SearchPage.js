@@ -6,7 +6,7 @@ import { updateDoc, doc, arrayUnion } from "firebase/firestore";
 import db from './firebase';
 import loading from '../assets/loading.gif';
 
-function Home() {
+function SearchPage() {
   let uid, recommended_games, dataReceived, search_history, game_review;
   // let review_open = false;
   const { user, setUser } = useContext(SearchContext);
@@ -85,6 +85,19 @@ function Home() {
           updateDoc(historyRef, {
             History: arrayUnion(search_history)
             // History: arrayUnion("hi")
+          }).then(value => {
+            let user_history = [...user.history, search_history];
+            setUser({
+              name: user.name,
+              userName: user.userName,
+              type: user.type,
+              id: user.id,
+              LoggedIn: true,
+              gender: user.gender,
+              age: user.age,
+              mail: user.mail,
+              history: user_history
+            });
           });
 
 
@@ -172,4 +185,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default SearchPage;

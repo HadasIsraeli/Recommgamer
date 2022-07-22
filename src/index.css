@@ -26,9 +26,9 @@ button {
 
 .logout-button {
   bottom: 0;
-  position: absolute;
-  left: 0;
-  /*   right: 0*/
+  position: fixed;
+  /* left: 0; */
+  right: 0
 }
 
 
@@ -97,6 +97,7 @@ button {
 
 .results {
   margin: 25px;
+  color: white;
 }
 
 .user {
@@ -218,11 +219,11 @@ button {
   background: transparent;
 }
 
-.form-review{
+.form-review {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
   flex-direction: column;
   align-content: center;
   min-width: 400px;
@@ -236,5 +237,6 @@ button {
   margin: 20px 0 20px 0;
   box-shadow: 0 2px 6px 2px #8e9092;
   z-index: 999;
-  padding:20px;
+  padding: 20px;
+  color: white;
 }

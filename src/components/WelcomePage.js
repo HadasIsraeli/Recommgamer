@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useState } from 'react';
 import controller from '../assets/controller.png';
 import { SearchContext } from '../LoggedInUser';
 
@@ -7,7 +7,23 @@ function WelcomePage() {
   const { user, setUser } = useContext(SearchContext);
   let user_type = user.type;
   let user_history = user.history;
-  
+  let game_names;
+  const [results_open, setResultsOpen] = useState();
+  const [game_results, setResults] = useState();
+
+  const seeResults = (index) => {
+    game_names = user_history[index].game_names;
+    console.log('game_name_review', game_names);
+    setResults(game_names);
+    setResultsOpen(true);
+  }
+
+  const close = () => {
+    setResults();
+    setResultsOpen(false);
+  }
+
+  console.log('user_history', user_history);
   console.log('The User Is: ', user_type, user);
 
   return (
@@ -26,12 +42,33 @@ function WelcomePage() {
         ) : (
           <div>
             <div>History: </div>
-            {/* <div>{user_history.map((search, index) => {
-              <div>
-                <p>{index}</p>
-                <p>{search}</p>
-              </div>;
-            })} </div> */}
+
+            <div>
+              {(user_history) ? user_history.map((game, index) => {
+                return (
+                  <div className="results">
+                    <p> {index + 1}. {game.search_input}</p>
+                    <button onClick={() => { seeResults(index) }}>see results</button>
+                  </div>
+                )
+              }) : <div></div>}
+            </div>
+
+            <div>{(results_open)
+              ? <div className="form-review">
+                <button onClick={() => { close() }}>close</button>
+                {(game_results)
+                  ? game_results.map((game_review, index) => {
+                    return (
+                      <div>
+                        <p> {index + 1}. {game_review}</p>
+                      </div>
+                    )
+                  }) : <p></p>
+                }
+              </div>
+              : <p></p>}
+            </div>
           </div>
         )
         )}

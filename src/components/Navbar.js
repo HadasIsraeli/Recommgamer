@@ -47,7 +47,7 @@ function Navbar() {
                 <div className="navbar-container">
                     <Link className="brand-logo" to="/WelcomePage">Game Searcher</Link>
                     <div className="right-navbar">
-                        <NavLink to='/Home'>Search Game</NavLink>
+                        <NavLink to='/SearchPage'>Search Game</NavLink>
                         <button className="logout-button" onClick={Logout}>Logout</button>
                     </div>
                 </div>
