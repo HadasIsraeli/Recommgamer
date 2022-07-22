@@ -12,7 +12,8 @@ export const SearchContextWrapper = ({ children }) => {
         LoggedIn: false,
         gender: "",
         age: "",
-        mail: ""
+        mail: "",
+        history: []
     });
 
     return (

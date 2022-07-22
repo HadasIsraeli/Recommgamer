@@ -3,7 +3,7 @@ import { SearchContext } from '../LoggedInUser';
 import AddUser from './AddUser';
 import { useHistory } from 'react-router-dom';
 import db from './firebase';
-import { collection, getDocs, addDoc, } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc,doc } from "firebase/firestore";
 import validator from 'validator';
 
 function Register() {
@@ -58,14 +58,12 @@ function Register() {
                 else {
                     if ((index == users_list.length - 1) && (user_match == false)) { //creating a new user if validating passed and the is no maching userName
                         console.log('the new_user details are Validated', new_user);
-                        new_user.id = Math.random();
+                        new_user.id = Math.random().toString();
                         new_user.type = 'basic';
                         new_user.LoggedIn = true;
 
-                        setUser(new_user);
-
                         addDoc(usersCollectionRef, {
-                            name: new_user.name, 
+                            name: new_user.name,
                             id: new_user.id,
                             userName: new_user.userName,
                             type: new_user.type,
@@ -73,6 +71,13 @@ function Register() {
                             age: new_user.age,
                             password: new_user.password,
                             mail: new_user.mail,
+                        }).then(value => {
+                            console.log(value['id']);
+                            new_user.id = value['id'];
+                            setUser(new_user);
+                            updateDoc(doc(db, "users", new_user.id), {
+                                id: new_user.id
+                            });
                         });
 
                         history.push('/WelcomePage'); //sending the new user to the main page
