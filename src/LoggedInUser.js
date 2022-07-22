@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const SearchContext = createContext();
 
 export const SearchContextWrapper = ({ children }) => {
-    
+
     const [user, setUser] = useState({
         name: "",
         id: "",
@@ -12,8 +12,9 @@ export const SearchContextWrapper = ({ children }) => {
         LoggedIn: false,
         gender: "",
         age: "",
-        mail:""
-      });
+        mail: "",
+        history: []
+    });
 
     return (
         <SearchContext.Provider value={{ user, setUser }}>

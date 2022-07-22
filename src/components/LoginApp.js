@@ -44,7 +44,8 @@ function LoginApp() {
                     LoggedIn: true,
                     gender: user.gender,
                     age: user.age,
-                    mail: user.mail
+                    mail: user.mail,
+                    history: user.History || null
                 });
                 user_match = true;// there is a mach 
                 console.log('Logged in!  isLoggedIn:', user.LoggedIn, user, ' user_match:', user_match);

@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { SearchContext } from '../LoggedInUser';
 import { updateDoc, doc, arrayUnion } from "firebase/firestore";
 import db from './firebase';
+import loading from '../assets/loading.gif';
 
 function Home() {
   let uid, recommended_games, dataReceived, search_history, game_review;
@@ -19,6 +20,7 @@ function Home() {
   const [game_names_results, setGameNames] = useState();
   const [game_review_results, setGameReviews] = useState();
   const [review_open, setReviewOpen] = useState();
+  const [searchLoad, setLoad] = useState(false);
 
   const handleInput = (gameName) => {
     setState(gameName.target.value);
@@ -27,6 +29,7 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setName(state);
+    setReviewOpen(false);
 
     if (!state) {//if input is empty > dispalying error on screen
       setEmpty(true);
@@ -35,9 +38,9 @@ function Home() {
       setGameNames("");
       setEmpty(false);
       setName(state);
-
+      setLoad(true);
       document.getElementById('gameName').value = '';
-      console.log('gameName', state, game_name_search);
+      // console.log('gameName', state, game_name_search);
 
       const data_send = {
         "user input": {
@@ -70,11 +73,11 @@ function Home() {
           setResults(dataReceived);
           setRecommended(recommended_games);
           setGameNames(Object.keys(recommended_games));
-
+          setLoad(false);
           search_history = {
             "search_id": uid,
             "game_names": Object.keys(recommended_games),
-            "search_input": game_name_search
+            "search_input": state
           }
           console.log("history:", search_history);
 
@@ -140,11 +143,10 @@ function Home() {
               <button onClick={() => { seeReviews(game) }}>see reviews</button>
             </div>
           )
-        }) : <div className="user">Please wait...</div>}
+        }) : <div></div>}
       </div>
       <div>{(review_open)
-        ?
-        <div className="form-review">
+        ? <div className="form-review">
           <button onClick={() => { close() }}>close</button>
           {(game_review_results)
             ? game_review_results.map((game_review, index) => {
@@ -157,6 +159,14 @@ function Home() {
           }
         </div>
         : <p></p>}
+      </div>
+      <div>
+        {(searchLoad)
+          ? <div>
+            <div className="img-game"><img src={loading} alt="loading" className='img' /></div>
+          </div>
+          : <div></div>
+        }
       </div>
     </div>
   );
