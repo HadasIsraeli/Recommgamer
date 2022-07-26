@@ -1,0 +1,28 @@
+{
+    "users": [
+        {
+            "username": "Hadas",
+            "age": 26,
+            "gender": "blue",
+            "id": 1,
+            "type":"manager",
+            "password":"H123456"
+        },
+        {
+            "username": "Inbar",
+            "age": 27,
+            "gender": "pink",
+            "id": 2,
+            "type":"manager",
+            "password":"I123456"
+        },
+        {
+            "username": "Grisha",
+            "age": 29,
+            "gender": "RED",
+            "id": 3,
+            "type":"basic",
+            "password":"G123456"
+        }
+    ]
+}
