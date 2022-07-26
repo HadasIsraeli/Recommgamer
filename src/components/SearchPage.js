@@ -2,7 +2,7 @@ import { stringify } from '@firebase/util';
 import React, { useState, useContext } from 'react';
 import $ from 'jquery';
 import { SearchContext } from '../LoggedInUser';
-import { updateDoc, doc, arrayUnion, getDoc  } from "firebase/firestore";
+import { updateDoc, doc, arrayUnion, getDoc } from "firebase/firestore";
 import db from './firebase';
 import loading from '../assets/loading.gif';
 
@@ -86,7 +86,7 @@ function SearchPage() {
             updateDoc(historyRef, {
               History: arrayUnion(search_history)
             }).then(value => {
-              const docSnap =  getDoc(historyRef).then(val=> {
+              getDoc(historyRef).then(val => {
                 setUser({
                   name: user.name,
                   userName: user.userName,
@@ -106,7 +106,6 @@ function SearchPage() {
             setLoad(false);
             setState("");
           }
-
         },
         error: function (xhr, thrownError) {
           console.log("ERROR Status:", xhr.status, "-", thrownError)
