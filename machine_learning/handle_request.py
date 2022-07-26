@@ -6,8 +6,8 @@ import json
 
 def response(request_json):
 
-    df = pd.read_csv("myapp\machine_learning\df\clean_df_only_reviews.csv", encoding='utf-8')
-    df_full_reviews = pd.read_csv("myapp\machine_learning\df\df_full_reviews.csv", encoding='utf-8').reset_index()
+    df = pd.read_csv("machine_learning\df\clean_df_only_reviews.csv", encoding='utf-8')
+    df_full_reviews = pd.read_csv("machine_learning\df\df_full_reviews.csv", encoding='utf-8').reset_index()
 
     df.drop(['Unnamed: 0'], inplace=True, axis=1)  # Drop redundant column
 
