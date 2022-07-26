@@ -2,7 +2,7 @@ import { stringify } from '@firebase/util';
 import React, { useState, useContext } from 'react';
 import $ from 'jquery';
 import { SearchContext } from '../LoggedInUser';
-import { updateDoc, doc, arrayUnion } from "firebase/firestore";
+import { updateDoc, doc, arrayUnion, getDoc  } from "firebase/firestore";
 import db from './firebase';
 import loading from '../assets/loading.gif';
 
@@ -85,20 +85,20 @@ function SearchPage() {
             const historyRef = doc(db, "users", user.id);
             updateDoc(historyRef, {
               History: arrayUnion(search_history)
-              // History: arrayUnion("hi")
             }).then(value => {
-              let user_history = [...user.history, search_history];
-              setUser({
-                name: user.name,
-                userName: user.userName,
-                type: user.type,
-                id: user.id,
-                LoggedIn: true,
-                gender: user.gender,
-                age: user.age,
-                mail: user.mail,
-                history: user_history
-              });
+              const docSnap =  getDoc(historyRef).then(val=> {
+                setUser({
+                  name: user.name,
+                  userName: user.userName,
+                  type: user.type,
+                  id: user.id,
+                  LoggedIn: true,
+                  gender: user.gender,
+                  age: user.age,
+                  mail: user.mail,
+                  history: val.data().History
+                });
+              })
             });
           } else {
             setNotExist(true);

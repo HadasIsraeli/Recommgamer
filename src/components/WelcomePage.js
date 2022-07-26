@@ -1,6 +1,8 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext, useState } from 'react';
 import controller from '../assets/controller.png';
 import { SearchContext } from '../LoggedInUser';
+import { doc, updateDoc, deleteField } from "firebase/firestore";
+import db from './firebase';
 
 function WelcomePage() {
   //desplaying the users information - name, userName, age, gender, search history, etc.
@@ -23,6 +25,25 @@ function WelcomePage() {
     setResultsOpen(false);
   }
 
+  const clearHistory = () => {
+    const historyRef = doc(db, "users", user.id);
+    updateDoc(historyRef, {
+      History: deleteField()
+    }).then(value => {
+      setUser({
+        name: user.name,
+        userName: user.userName,
+        type: user.type,
+        id: user.id,
+        LoggedIn: true,
+        gender: user.gender,
+        age: user.age,
+        mail: user.mail,
+        history: null
+      });
+    });
+  }
+
   console.log('user_history', user_history);
   console.log('The User Is: ', user_type, user);
 
@@ -42,7 +63,7 @@ function WelcomePage() {
         ) : (
           <div>
             <div>History: </div>
-
+            <button onClick={() => { clearHistory() }}>clear History</button>
             <div>
               {(user_history) ? user_history.map((game, index) => {
                 return (
