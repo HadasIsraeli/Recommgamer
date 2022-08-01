@@ -76,13 +76,13 @@ function WelcomePage() {
             </div>
 
             <div>{(results_open)
-              ? <div className="form-review">
+              ? <div className="form-result">
                 <button onClick={() => { close() }}>close</button>
                 {(game_results)
-                  ? game_results.map((game_review, index) => {
+                  ? game_results.map((result, index) => {
                     return (
                       <div>
-                        <p> {index + 1}. {game_review}</p>
+                        <p> {index + 1}. {result}</p>
                       </div>
                     )
                   }) : <p></p>
