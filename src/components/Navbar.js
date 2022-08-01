@@ -30,7 +30,7 @@ function Navbar() {
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">
-                    <Link className="brand-logo" to="/WelcomePage">Game Searcher</Link>
+                    <Link className="brand-logo" to="/WelcomePage">RecommGamer</Link>
                     <div className="right-navbar">
                         <NavLink to='/UsersPage'>Users</NavLink>
                         <button className="logout-button" onClick={Logout}>Logout</button>
@@ -44,7 +44,7 @@ function Navbar() {
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">
-                    <Link className="brand-logo" to="/WelcomePage">Game Searcher</Link>
+                    <Link className="brand-logo" to="/WelcomePage">RecommGamer</Link>
                     <div className="right-navbar">
                         <NavLink to='/SearchPage'>Search Game</NavLink>
                         <button className="logout-button" onClick={Logout}>Logout</button>
