@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 
-export const SearchContext = createContext();
+export const LoggedContext = createContext();
 
-export const SearchContextWrapper = ({ children }) => {
+export const LoggedContextWrapper = ({ children }) => {
 
     const [user, setUser] = useState({
         name: "",
@@ -17,8 +17,8 @@ export const SearchContextWrapper = ({ children }) => {
     });
 
     return (
-        <SearchContext.Provider value={{ user, setUser }}>
+        <LoggedContext.Provider value={{ user, setUser }}>
             {children}
-        </SearchContext.Provider>
+        </LoggedContext.Provider>
     );
 };

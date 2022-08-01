@@ -7,11 +7,11 @@ import Register from './components/Register';
 import LoginApp from './components/LoginApp';
 import WelcomePage from './components/WelcomePage';
 
-import { SearchContextWrapper } from './LoggedInUser';
+import { LoggedContextWrapper } from './LoggedInUser';
 
 function App() {
   return (
-    <SearchContextWrapper>
+    <LoggedContextWrapper>
       <Navbar />
       <Switch>
         <Route exact path='/' component={LoginApp} />
@@ -20,7 +20,7 @@ function App() {
         <Route exact path='/UsersPage' component={UsersPage} />
         <Route exact path='/SearchPage' component={SearchPage} />
       </Switch>
-    </SearchContextWrapper>
+    </LoggedContextWrapper>
   );
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import LoginForm from './LoginForm';
 import { withRouter } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import { SearchContext } from '../LoggedInUser';
+import { LoggedContext } from '../LoggedInUser';
 import db from './firebase'
 import { collection, getDocs } from "firebase/firestore";
 
@@ -18,7 +18,7 @@ function LoginApp() {
     }
 
 
-    const { user, setUser } = useContext(SearchContext);//global users, to know who is logged in all the app pages
+    const { user, setUser } = useContext(LoggedContext);//global users, to know who is logged in all the app pages
     const [error, SetError] = useState("");
 
     if (users.length < 1) {

@@ -1,7 +1,7 @@
 import { stringify } from '@firebase/util';
 import React, { useState, useContext } from 'react';
 import $ from 'jquery';
-import { SearchContext } from '../LoggedInUser';
+import { LoggedContext } from '../LoggedInUser';
 import { updateDoc, doc, arrayUnion, getDoc } from "firebase/firestore";
 import db from './firebase';
 import loading from '../assets/loading.gif';
@@ -9,7 +9,7 @@ import loading from '../assets/loading.gif';
 function SearchPage() {
   let uid, recommended_games, dataReceived, search_history, game_review;
   // let review_open = false;
-  const { user, setUser } = useContext(SearchContext);
+  const { user, setUser } = useContext(LoggedContext);
 
   const [is_empty, setEmpty] = useState(false);
   const [state, setState] = useState("");

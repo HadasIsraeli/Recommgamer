@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { withRouter, useHistory } from "react-router-dom";
-import { SearchContext } from '../LoggedInUser';
+import { LoggedContext } from '../LoggedInUser';
 
 function Navbar() {
-    const { user, setUser } = useContext(SearchContext);
+    const { user, setUser } = useContext(LoggedContext);
     let user_type = user.type;
     let logged_in = user.LoggedIn;
     console.log('The User Is: ', user_type, user);

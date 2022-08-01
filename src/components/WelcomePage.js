@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import controller from '../assets/controller.png';
-import { SearchContext } from '../LoggedInUser';
+import { LoggedContext } from '../LoggedInUser';
 import { doc, updateDoc, deleteField } from "firebase/firestore";
 import db from './firebase';
 
 function WelcomePage() {
   //desplaying the users information - name, userName, age, gender, search history, etc.
-  const { user, setUser } = useContext(SearchContext);
+  const { user, setUser } = useContext(LoggedContext);
   let user_type = user.type;
   let user_history = user.history;
   let game_names;

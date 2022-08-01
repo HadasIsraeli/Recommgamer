@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { SearchContext } from '../LoggedInUser';
+import { LoggedContext } from '../LoggedInUser';
 import AddUser from './AddUser';
 import { useHistory } from 'react-router-dom';
 import db from './firebase';
@@ -9,7 +9,7 @@ import validator from 'validator';
 function Register() {
     let history = useHistory();
     let user_match = false;
-    const { user, setUser } = useContext(SearchContext);
+    const { user, setUser } = useContext(LoggedContext);
 
     const [users_list, setList] = useState([]);// Puts users data in an array
     const [error, SetError] = useState("");
