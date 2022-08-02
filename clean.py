@@ -23,7 +23,7 @@ def remove_title(row):
 
 if __name__ == '__main__':
 
-    df = pd.read_csv("machine_learning\df\metacritic_critic_reviews.csv", encoding='utf-8')
+    df = pd.read_csv("df\metacritic_critic_reviews.csv", encoding='utf-8')
     df, df_full_reviews = clean_df(df)
 
     df['Reviews'] = df.apply(remove_title, axis=1)  # Removing the game title from the users reviews
@@ -31,5 +31,5 @@ if __name__ == '__main__':
     df.dropna(inplace=True)  # Drop null values that remind after all the cleaning
 
 
-    df_full_reviews.to_csv("machine_learning\df\df_full_reviews.csv")
-    df.to_csv("machine_learning\df\clean_df_only_reviews.csv")
+    df_full_reviews.to_csv("df\df_full_reviews.csv")
+    df.to_csv("df\clean_df_only_reviews.csv")

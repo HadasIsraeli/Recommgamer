@@ -16,7 +16,7 @@ def postME():
    print("data recived: " + str(request_data))
 
    game_name = request_data["user input"]["game_name"].lower()
-   data = pd.read_csv("machine_learning\df\clean_df_only_reviews.csv", encoding='utf-8')
+   data = pd.read_csv("df\clean_df_only_reviews.csv", encoding='utf-8')
    gameNames = data['Game Title'].to_list()
    gameNamesLowerCase = [x.lower() for x in gameNames]
    res = any(game_name in string for string in gameNamesLowerCase)
