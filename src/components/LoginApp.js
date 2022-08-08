@@ -53,7 +53,7 @@ function LoginApp() {
                 return;
             }
             else {
-                if ((index == users.length - 1) && (user_match == false)) {//dispalying error if the user not exist
+                if ((index === users.length - 1) && (user_match === false)) {//dispalying error if the user not exist
                     console.log('Details do not match!');
                     SetError('Details do not match! Please Register :) ');
                 }

@@ -61,7 +61,7 @@ function AddUser({ addUser, error }) {
                 </div>
                 <button className="submit-button" type="submit" value="SIGNIN">Submit</button>
 
-                <div className="img-game"><img src={joystick} alt="computer-game" className='img' /></div>
+                {/* <div className="img-game"><img src={joystick} alt="computer-game" className='img' /></div> */}
             </div>
         </form >
     )

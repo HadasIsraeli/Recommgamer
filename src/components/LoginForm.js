@@ -35,7 +35,7 @@ function LoginForm({ Login, error }) {
                 </div>
                 <Button className="submit-button" type="submit" value="LOGIN">Login</Button>
 
-                <div className="img-game"><img src={joystick} alt="joystick" className='img' /></div>
+                {/* <div className="img-game"><img src={joystick} alt="joystick" className='img' /></div> */}
             </div>
         </form>
     )

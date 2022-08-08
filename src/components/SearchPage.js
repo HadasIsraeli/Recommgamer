@@ -1,4 +1,3 @@
-import { stringify } from '@firebase/util';
 import React, { useState, useContext } from 'react';
 import $ from 'jquery';
 import { LoggedContext } from '../LoggedInUser';
@@ -63,7 +62,7 @@ function SearchPage() {
         success: function (data) {
           dataReceived = JSON.parse(data);
           console.log("The json response:", dataReceived);
-          if (dataReceived != 0) {
+          if (dataReceived !== 0) {
 
             setNotExist(false);
             // push history to firestore as 'History' 

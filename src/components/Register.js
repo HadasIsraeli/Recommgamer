@@ -56,7 +56,7 @@ function Register() {
                     SetError('Sorry! There is alraedy a userName ' + new_user.userName + ' in the system! try somthing else...');
                 }
                 else {
-                    if ((index == users_list.length - 1) && (user_match == false)) { //creating a new user if validating passed and the is no maching userName
+                    if ((index === users_list.length - 1) && (user_match === false)) { //creating a new user if validating passed and the is no maching userName
                         console.log('the new_user details are Validated', new_user);
                         new_user.id = Math.random().toString();
                         new_user.type = 'basic';

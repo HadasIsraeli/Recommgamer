@@ -94,7 +94,7 @@ function WelcomePage() {
         )
         )}
       </div>
-      <div className="welcome-game"><img src={controller} alt="computer-game" className="welcome-img" /></div>
+      {/* <div className="welcome-game"><img src={controller} alt="computer-game" className="welcome-img" /></div> */}
     </div>
   );
 }
