@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import controller from '../assets/controller.png';
 import { LoggedContext } from '../LoggedInUser';
 import { doc, updateDoc, deleteField } from "firebase/firestore";
 import db from './firebase';
@@ -94,7 +93,6 @@ function WelcomePage() {
         )
         )}
       </div>
-      {/* <div className="welcome-game"><img src={controller} alt="computer-game" className="welcome-img" /></div> */}
     </div>
   );
 }

@@ -35,7 +35,7 @@ function UsersPage() {
 
   return (
     <div className="App">
-      <h1> Users list:</h1>
+      <h1 className="headline"> Users list:</h1>
       <div className="user-list">
         {users.map((user) => { //Goes over all the users collected from FireStore and prints to screen the data.
           return (

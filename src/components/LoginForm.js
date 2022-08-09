@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import joystick from '../assets/joystick.png';
 
 function LoginForm({ Login, error }) {
     const [details, setDetails] = useState({        //variable to save the login input details
@@ -35,7 +34,6 @@ function LoginForm({ Login, error }) {
                 </div>
                 <Button className="submit-button" type="submit" value="LOGIN">Login</Button>
 
-                {/* <div className="img-game"><img src={joystick} alt="joystick" className='img' /></div> */}
             </div>
         </form>
     )

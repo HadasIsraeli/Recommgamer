@@ -3,7 +3,6 @@ import $ from 'jquery';
 import { LoggedContext } from '../LoggedInUser';
 import { updateDoc, doc, arrayUnion, getDoc } from "firebase/firestore";
 import db from './firebase';
-import loading from '../assets/loading.gif';
 
 function SearchPage() {
   let uid, recommended_games, dataReceived, search_history, game_review;
@@ -133,8 +132,7 @@ function SearchPage() {
   return (
     <div className="App">
       <h1 className="headline">Search Your Next Game:</h1>
-      <p className="headline">The following results are based on users reviews... Please enter a game name that you like</p>
-
+      <p className="user">The following results are based on users reviews... Please enter a game name that you like</p>
       <div className="form-search">
         <input className="input-search" type="text" placeholder="Enter Game Name" id="gameName" onChange={handleInput} />
         <button className="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
@@ -185,7 +183,7 @@ function SearchPage() {
       <div>
         {(searchLoad)
           ? <div>
-            <div className="img-game"><img src={loading} alt="loading" className='img' /></div>
+            <div class="loader">loading...</div>
           </div>
           : <div></div>
         }

@@ -101,10 +101,6 @@ button {
   color: white;
 }
 
-.user {
-  color: #bbfbff;
-}
-
 .form-register {
   color: aliceblue;
   display: flex;
@@ -131,14 +127,14 @@ button {
 .right-navbar a {
   margin: 10px;
   text-decoration: none;
-  color: #0952eb;
-  /* text-shadow: 1px 1px #f9fff44f; */
+  color: #9df6ff;
+  font-size: 20px;
 }
 
 .brand-logo {
   text-decoration: none;
-  color: #0952eb;
-  font-size: 20px;
+  color: #9df6ff;
+  font-size: 25px;
 }
 
 .select-key {
@@ -156,8 +152,13 @@ button {
 }
 
 .user {
+  color: #bbfbff;
   margin: 30px;
-  min-width: 110px;
+  width: 200px;
+  background-color: rgb(27 27 27 / 84%);
+  border-radius: 20px 0 20px 0;
+  box-shadow: 0 2px 6px 2px #8e909269;
+  padding: 5px 20px 20px 20px;
 }
 
 .input-search {
@@ -185,6 +186,7 @@ button {
 .form-search {
   display: flex;
   align-items: center;
+  transform: translate(10%, 0%);
 }
 
 
@@ -229,19 +231,20 @@ button {
   align-items: flex-start;
   flex-direction: column;
   align-content: center;
-  min-width: 400px;
-  min-height: 500px;
-  background-color: rgb(90, 90, 90);
+  max-width: 400px;
+  max-height: 500px;
+  background-color:  rgb(27 27 27 / 84%);
   position: absolute;
   left: 80%;
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px 0 20px 0;
   margin: 20px 0 20px 0;
-  box-shadow: 0 2px 6px 2px #8e9092;
+  box-shadow: 0 2px 6px 2px #8e909269;
   z-index: 999;
   padding: 20px;
   color: white;
+  overflow: auto;
 }
 
 .form-result {
@@ -253,15 +256,62 @@ button {
   align-content: center;
   min-width: 250px;
   min-height: 200px;
-  background-color: rgb(90, 90, 90);
+  background-color:  rgb(27 27 27 / 84%);
   position: absolute;
   left: 80%;
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px 0 20px 0;
   margin: 20px 0 20px 0;
-  box-shadow: 0 2px 6px 2px #8e9092;
+  box-shadow: 0 2px 6px 2px #8e909269;
   z-index: 999;
   padding: 20px;
   color: white;
+}
+
+.loader {
+  transform: translate(150%, 0%);
+  max-width: 150px;
+  padding: 2rem 4rem;
+  font-family: monospace;
+  font-weight: bold;
+  color: #fff;
+  border-style: solid;
+  border-width: 1vmin;
+  font-size: 2rem;
+  --charge: hsl(var(--h, 0), 80%, 50%);
+  -o-border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
+     border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
+  -webkit-animation: load 2s infinite ease-in-out;
+          animation: load 2s infinite ease-in-out;
+}
+@-webkit-keyframes load {
+  0%, 10% {
+    --a: 0deg;
+    --h: 0;
+  }
+  100% {
+    --a: 360deg;
+    --h: 100;
+  }
+}
+@keyframes load {
+  0%, 10% {
+    --a: 0deg;
+    --h: 0;
+  }
+  100% {
+    --a: 360deg;
+    --h: 100;
+  }
+}
+@property --a {
+  initial-value: 0deg;
+  inherits: false;
+  syntax: '<angle>';
+}
+@property --h {
+  initial-value: 0;
+  inherits: false;
+  syntax: '<number>';
 }
