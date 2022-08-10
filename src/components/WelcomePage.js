@@ -49,12 +49,14 @@ function WelcomePage() {
   return (
     <div className="App">
       <h1 className="headline">Welcome to RecommGamer!</h1>
-      <div className="user">
+      <div>
+        <div className="user">
         <h2>{user.userName} </h2>
         <div>Name: {user.name} </div>
         <div>Age: {user.age} </div>
         <div>Gender: {user.gender} </div>
         <div>Mail: {user.mail} </div>
+        </div>
         {(user.type === 'admin') ? (
           <div> </div>
         ) : (((!user_history)) ? (
@@ -63,7 +65,7 @@ function WelcomePage() {
           <div>
             <div>History: </div>
             <button onClick={() => { clearHistory() }}>clear History</button>
-            <div>
+            <div className="results-wrap">
               {(user_history) ? user_history.map((game, index) => {
                 return (
                   <div className="results">

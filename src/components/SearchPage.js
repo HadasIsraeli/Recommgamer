@@ -132,10 +132,12 @@ function SearchPage() {
   return (
     <div className="App">
       <h1 className="headline">Search Your Next Game:</h1>
-      <p className="user">The following results are based on users reviews... Please enter a game name that you like</p>
-      <div className="form-search">
-        <input className="input-search" type="text" placeholder="Enter Game Name" id="gameName" onChange={handleInput} />
-        <button className="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
+      <div className="search-bar">
+        <p className="user">The following results are based on users reviews... Please enter a game name that you like</p>
+        <div className="form-search">
+          <input className="input-search" type="text" placeholder="Enter Game Name" id="gameName" onChange={handleInput} />
+          <button className="bn31" type="submit" onClick={handleSubmit}><span class="bn31span">Search</span></button>
+        </div>
       </div>
       <div>
         {(is_empty)
@@ -155,7 +157,7 @@ function SearchPage() {
           : <div></div>
         }
       </div>
-      <div>
+      <div className="results-wrap">
         {(game_names_results) ? game_names_results.map((game, index) => {
           return (
             <div className="results">

@@ -110,6 +110,11 @@ button {
 
 .App {
   color: aliceblue;
+  margin: 10px;
+}
+
+.search-bar {
+  display: flex;
 }
 
 .navbar-container {
@@ -121,7 +126,7 @@ button {
   justify-content: space-between;
   background-color: black;
   border-radius: 0px 0px 10px 10px;
-  padding: 20px;
+  padding: 13px;
 }
 
 .right-navbar a {
@@ -231,9 +236,11 @@ button {
   align-items: flex-start;
   flex-direction: column;
   align-content: center;
+  min-width: 400px;
   max-width: 400px;
-  max-height: 500px;
-  background-color:  rgb(27 27 27 / 84%);
+  font-size: 13px;
+  max-height: 400px;
+  background-color: rgb(27 27 27 / 84%);
   position: absolute;
   left: 80%;
   top: 50%;
@@ -256,7 +263,7 @@ button {
   align-content: center;
   min-width: 250px;
   min-height: 200px;
-  background-color:  rgb(27 27 27 / 84%);
+  background-color: rgb(27 27 27 / 84%);
   position: absolute;
   left: 80%;
   top: 50%;
@@ -267,6 +274,15 @@ button {
   z-index: 999;
   padding: 20px;
   color: white;
+}
+
+.results-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
 }
 
 .loader {
@@ -281,35 +297,45 @@ button {
   font-size: 2rem;
   --charge: hsl(var(--h, 0), 80%, 50%);
   -o-border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
-     border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
+  border-image: conic-gradient(var(--charge) var(--a), transparent calc(var(--a) + 0.5deg)) 30;
   -webkit-animation: load 2s infinite ease-in-out;
-          animation: load 2s infinite ease-in-out;
+  animation: load 2s infinite ease-in-out;
 }
+
 @-webkit-keyframes load {
-  0%, 10% {
+
+  0%,
+  10% {
     --a: 0deg;
     --h: 0;
   }
+
   100% {
     --a: 360deg;
     --h: 100;
   }
 }
+
 @keyframes load {
-  0%, 10% {
+
+  0%,
+  10% {
     --a: 0deg;
     --h: 0;
   }
+
   100% {
     --a: 360deg;
     --h: 100;
   }
 }
+
 @property --a {
   initial-value: 0deg;
   inherits: false;
   syntax: '<angle>';
 }
+
 @property --h {
   initial-value: 0;
   inherits: false;
