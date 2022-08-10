@@ -63,7 +63,7 @@ function SearchPage() {
         success: function (data) {
           dataReceived = JSON.parse(data);
           console.log("The json response:", dataReceived);
-          if (dataReceived != 0) {
+          if (dataReceived != -1) {
 
             setNotExist(false);
             // push history to firestore as 'History' 

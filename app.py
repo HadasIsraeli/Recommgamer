@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from flask import Flask, request
 from flask_cors import CORS
 import pandas as pd
@@ -23,7 +22,7 @@ def postME():
    if(res):
       res_data = handle_request.response(request_data) #method that returns the response json
    else:
-      res_data = NULL
+      res_data = -1
 
 
    # res_data = handle_request.response(request_data) #method that returns the response json
