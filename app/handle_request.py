@@ -1,13 +1,13 @@
 import uuid
 import pandas as pd
-import machine_learning
+import app.machine_learning as ml
 import json
 
 
 def response(request_json):
 
-    df = pd.read_csv("df\clean_df_only_reviews.csv", encoding='utf-8')
-    df_full_reviews = pd.read_csv("df\df_full_reviews.csv", encoding='utf-8').reset_index()
+    df = pd.read_csv("app/df/clean_df_only_reviews.csv", encoding='utf-8')
+    df_full_reviews = pd.read_csv("app/df/df_full_reviews.csv", encoding='utf-8').reset_index()
 
     df.drop(['Unnamed: 0'], inplace=True, axis=1)  # Drop redundant column
 
@@ -15,8 +15,8 @@ def response(request_json):
     uid = str(uuid.uuid1())
 
     # Starting the machine learning
-    tfidf_df = machine_learning.text_based_similarities(df)
-    df_recommend_games = machine_learning.recommend_games(df, tfidf_df, game_name)
+    tfidf_df = ml.text_based_similarities(df)
+    df_recommend_games = ml.recommend_games(df, tfidf_df, game_name)
     # print(df_recommend_games)
 
     # Return the answer in json object
