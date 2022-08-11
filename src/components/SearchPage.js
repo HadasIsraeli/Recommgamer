@@ -45,16 +45,16 @@ function SearchPage() {
 
       const data_send = {
         "user input": {
-          "game_name": "gamecritics"
+          "game_name": state
         }
       }
       console.log('data_send', data_send);
 
       //sending the game name to backend
       $.ajax({
-        url: 'https://eflask-app-heroku-test.herokuapp.com/responer',
-        type: 'post',
-        contentType: "application/json; charset=utf-8",
+        url: 'https://backpythontest111.herokuapp.com/responer',
+        type: 'POST',
+        contentType: "application/json",
         cache: false,
         dataType: 'json',
         data: JSON.stringify(data_send),
