@@ -106,7 +106,11 @@ function SearchPage() {
           }
         },
         error: function (xhr, thrownError) {
-          console.log("ERROR Status:", xhr.status, "-", thrownError)
+          console.log("ERROR Status:", xhr.status, "-", thrownError);
+          setNotExist(true);
+          setName("");
+          setLoad(false);
+          setState("");
         }
       });
       setState("");
