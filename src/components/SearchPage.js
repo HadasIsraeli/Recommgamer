@@ -145,19 +145,19 @@ function SearchPage() {
       </div>
       <div>
         {(is_empty)
-          ? <h2 className="headline">Your search is empty :/ , please enter a game name!</h2>
+          ? <h2 className="text">Your search is empty :/ , please enter a game name!</h2>
           : <p></p>
         }
       </div>
       <div>
         {(not_exist)
-          ? <h2 className="headline">Sorry this game is not in our Data :/ , please enter a different game name!</h2>
+          ? <h2 className="text">Sorry this game is not in our Data :/ , please enter a different game name!</h2>
           : <p></p>
         }
       </div>
       <div>
         {(game_name_search)
-          ? <h2 className="headline">Based on reviews, people who liked ~ {game_name_search} ~ also liked the following games: </h2>
+          ? <h2 className="text">Based on reviews, people who liked ~ {game_name_search} ~ also liked the following games: </h2>
           : <div></div>
         }
       </div>

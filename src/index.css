@@ -174,10 +174,25 @@ button {
 }
 
 .headline {
-  color: #fb05ee;
+  color: #0cfa96;
   margin: 20px;
   position: relative;
   text-shadow: 1.5px 1.5px #f9fff44f;
+  background-color: rgb(27 27 27 / 75%);
+  border-radius: 20px 0 20px 0;
+  padding: 15px;
+  width: fit-content;
+}
+
+.text {
+  color: #d803d1;
+  margin: 20px;
+  position: relative;
+  background-color: rgb(27 27 27 / 75%);
+  border-radius: 20px 0 20px 0;
+  padding: 15px;
+  width: fit-content;
+  font-size: 20px;
 }
 
 .form-group-inputs {
