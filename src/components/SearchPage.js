@@ -52,7 +52,7 @@ function SearchPage() {
 
       //sending the game name to backend
       $.ajax({
-        url: 'https://backpythontest111.herokuapp.com/responer',
+        url: 'https://recommgamer--backend.herokuapp.com/responer',
         type: 'POST',
         contentType: "application/json",
         cache: false,
