@@ -33,7 +33,7 @@ function AddUser({ addUser, error }) {
                             <input type="text" name="name" id="name" required onChange={e => setState({ ...state, name: e.target.value })} value={state.name} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="name">userName:</label>
+                            <label htmlFor="name">UserName:</label>
                             <input type="text" name="userName" id="userName" required onChange={e => setState({ ...state, userName: e.target.value })} value={state.userName} />
                         </div>
                         <div className="form-group">
