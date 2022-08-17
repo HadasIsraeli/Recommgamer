@@ -9,12 +9,12 @@ function SearchPage() {
   // let review_open = false;
   const { user, setUser } = useContext(LoggedContext);
 
-  const [is_empty, setEmpty] = useState(false);
+  const [is_empty, setEmpty] = useState("");
   const [state, setState] = useState("");
   const [game_name_search, setName] = useState("");
   const [recommended, setRecommended] = useState("");
 
-  const [not_exist, setNotExist] = useState(false);
+  const [not_exist, setNotExist] = useState("");
 
   const [game_names_results, setGameNames] = useState();
   const [game_review_results, setGameReviews] = useState();
@@ -23,23 +23,28 @@ function SearchPage() {
 
   const handleInput = (gameName) => {
     setState(gameName.target.value);
+    setEmpty("");
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setName(state);
+    // setName(state);
     setReviewOpen(false);
-    setNotExist(false);
+    setNotExist("");
     if (!state) {//if input is empty > dispalying error on screen
-      setEmpty(true);
-
-      console.log('Your search is empty :/ , please enter a game name! ', state, is_empty);
+      setEmpty('Your search is empty :/ , please enter a game name!');
+      console.log('is_empty', state, is_empty);
+    }
+    else if (state.length < 3) {//if input length is smaller then 3 > dispalying error on screen
+      setEmpty('please enter the full game name');
+      console.log('is_empty', state, is_empty);
     } else {
+      console.log('search input: ', state, state.length);
       setGameNames("");
-      setEmpty(false);
+
       setName(state);
       setLoad(true);
-      setNotExist(false);
+      setNotExist("");
       document.getElementById('gameName').value = '';
       // console.log('gameName', state, game_name_search);
 
@@ -63,7 +68,7 @@ function SearchPage() {
           console.log("The json response:", dataReceived);
           if (dataReceived !== -1) {
 
-            setNotExist(false);
+            setNotExist("");
             // push history to firestore as 'History' 
             uid = dataReceived["uid"];
             console.log(uid);
@@ -99,7 +104,7 @@ function SearchPage() {
               })
             });
           } else {
-            setNotExist(true);
+            setNotExist("Sorry this game is not in our Data , please enter a different game name!");
             setName("");
             setLoad(false);
             setState("");
@@ -107,7 +112,7 @@ function SearchPage() {
         },
         error: function (xhr, thrownError) {
           console.log("ERROR Status:", xhr.status, "-", thrownError);
-          setNotExist(true);
+          setNotExist("Sorry something went wrong, please try again...");
           setName("");
           setLoad(false);
           setState("");
@@ -144,14 +149,14 @@ function SearchPage() {
         </div>
       </div>
       <div>
-        {(is_empty)
-          ? <h2 className="text">Your search is empty :/ , please enter a game name!</h2>
+        {(is_empty != "")
+          ? <h2 className="text">{is_empty}</h2>
           : <p></p>
         }
       </div>
       <div>
-        {(not_exist)
-          ? <h2 className="text">Sorry this game is not in our Data :/ , please enter a different game name!</h2>
+        {(not_exist != "")
+          ? <h2 className="text">{not_exist}</h2>
           : <p></p>
         }
       </div>
