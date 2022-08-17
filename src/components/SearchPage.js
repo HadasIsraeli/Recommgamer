@@ -33,27 +33,22 @@ function SearchPage() {
     setNotExist("");
     if (!state) {//if input is empty > dispalying error on screen
       setEmpty('Your search is empty :/ , please enter a game name!');
-      console.log('is_empty', state, is_empty);
     }
     else if (state.length < 3) {//if input length is smaller then 3 > dispalying error on screen
       setEmpty('please enter the full game name');
-      console.log('is_empty', state, is_empty);
     } else {
-      console.log('search input: ', state, state.length);
       setGameNames("");
 
       setName(state);
       setLoad(true);
       setNotExist("");
       document.getElementById('gameName').value = '';
-      // console.log('gameName', state, game_name_search);
 
       const data_send = {
         "user input": {
           "game_name": state
         }
       }
-      console.log('data_send', data_send);
 
       //sending the game name to backend
       $.ajax({
@@ -65,15 +60,12 @@ function SearchPage() {
         data: JSON.stringify(data_send),
         success: function (data) {
           dataReceived = JSON.parse(data);
-          console.log("The json response:", dataReceived);
           if (dataReceived !== -1) {
 
             setNotExist("");
             // push history to firestore as 'History' 
             uid = dataReceived["uid"];
-            console.log(uid);
             recommended_games = dataReceived["recommended games"];
-            console.log("recommended_games:", recommended_games);
 
             setRecommended(recommended_games);
             setGameNames(Object.keys(recommended_games));
@@ -83,7 +75,6 @@ function SearchPage() {
               "game_names": Object.keys(recommended_games),
               "search_input": state
             }
-            console.log("history:", search_history);
 
             const historyRef = doc(db, "users", user.id);
             updateDoc(historyRef, {
@@ -111,7 +102,6 @@ function SearchPage() {
           }
         },
         error: function (xhr, thrownError) {
-          console.log("ERROR Status:", xhr.status, "-", thrownError);
           setNotExist("Sorry something went wrong, please try again...");
           setName("");
           setLoad(false);
@@ -124,7 +114,6 @@ function SearchPage() {
 
   const seeReviews = (game_name_review) => {
     game_review = recommended[game_name_review].slice(0, 5);
-    // console.log('game_name_review', game_name_review, game_review);
     setGameReviews(game_review);
     setReviewOpen(true);
   }
@@ -133,10 +122,6 @@ function SearchPage() {
     setGameReviews("");
     setReviewOpen(false);
   }
-
-  // console.log('Results', Results);
-  // console.log('recommended', recommended);
-  // console.log('game_names_results', game_names_results);
 
   return (
     <div className="App">

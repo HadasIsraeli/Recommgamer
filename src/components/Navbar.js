@@ -7,7 +7,6 @@ function Navbar() {
     const { user, setUser } = useContext(LoggedContext);
     let user_type = user.type;
     let logged_in = user.LoggedIn;
-    console.log('The User Is: ', user_type, user);
 
     let history = useHistory();
 
@@ -22,11 +21,9 @@ function Navbar() {
             age: ""
         });
         history.push('/'); //sends the user to login page
-        console.log("Logout", user.LoggedIn, user);
     }
 
     if ((user_type === "admin") && (logged_in === true)) {  //dispalying navigation bar to admin type user
-        // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">
@@ -40,7 +37,6 @@ function Navbar() {
         )
     }
     if ((user_type === 'basic') && (logged_in === true)) {      //dispalying navigation bar to basic type user
-        // console.log('The User Is: ', user_type);
         return (
             <nav className="nav-wrapper blue darken-3">
                 <div className="navbar-container">

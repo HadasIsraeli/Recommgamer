@@ -17,10 +17,8 @@ function AddUser({ addUser, error }) {
         e.preventDefault();
 
         addUser(state);
-        // console.log('Add user state', state);
     }
 
-    // console.log('add user state', state);
 
     return (
         <form onSubmit={handleSubmit} className="form-register">

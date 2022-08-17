@@ -14,7 +14,6 @@ function WelcomePage() {
 
   const seeResults = (index) => {
     game_names = user_history[index].game_names;
-    console.log('game_name_review', game_names);
     setResults(game_names);
     setResultsOpen(true);
   }
@@ -42,9 +41,6 @@ function WelcomePage() {
       });
     });
   }
-
-  console.log('user_history', user_history);
-  console.log('The User Is: ', user_type, user);
 
   return (
     <div className="App">

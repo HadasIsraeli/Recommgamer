@@ -16,8 +16,6 @@ function LoginForm({ Login, error }) {
         Login(details);
     }
 
-    // console.log('LoginForm state', details);
-
     return (
         <form onSubmit={submitHandler}>
             <div className="form-inner">
