@@ -32,7 +32,8 @@ function Navbar() {
                         <NavLink to='/UsersPage'>Users</NavLink>
                         <button className="logout-button" onClick={Logout}>
                             Logout
-                            <img src='https://cdn-icons-png.flaticon.com/512/56/56805.png' />
+                            <img src='https://cdn-icons-png.flaticon.com/512/56/56805.png'/>
+
                         </button>
                     </div>
                 </div>
@@ -46,7 +47,10 @@ function Navbar() {
                     <Link className="brand-logo" to="/WelcomePage">RecommGamer</Link>
                     <div className="right-navbar">
                         <NavLink to='/SearchPage'>Search Game</NavLink>
-                        <button className="logout-button" onClick={Logout}>Logout</button>
+                        <button className="logout-button" onClick={Logout}>Logout
+                        <img src='https://cdn-icons-png.flaticon.com/512/56/56805.png'/>
+
+                        </button>
                     </div>
                 </div>
             </nav>
