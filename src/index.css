@@ -29,8 +29,16 @@ button {
 .logout-button {
   bottom: 0;
   position: fixed;
-  /* left: 0; */
-  right: 0
+  display: flex;
+  right: 0;
+  width: 78px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-button img {
+  width: 20px;
+  height: 20px;
 }
 
 .img {
@@ -182,6 +190,8 @@ button {
   border-radius: 20px 0 20px 0;
   padding: 15px;
   width: fit-content;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .text {
