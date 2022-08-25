@@ -1,6 +1,10 @@
 # Game Recommander
 Submitting a game name & receiving 5 game names recommended for the user.
+
+
+website:
 https://recommgamer--front.herokuapp.com/
+python: https://recommgamer--backend.herokuapp.com/
 
 Project by: 
 - Hadas Israeli
