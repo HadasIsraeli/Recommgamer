@@ -20,10 +20,19 @@ button {
   font-family: 'Amarante', cursive;
   border: 1px solid rgb(117 117 123);
   margin: 10px;
-  box-shadow: 0 2px 6px 1px #7a7f8373;
+  box-shadow: 0 1px 3px 1px #7a7f8373;
   border-radius: 10px 0 10px 0;
   padding: 5px;
   font-style: italic;
+}
+
+.input-box{
+  background: rgb(27 27 27 / 0%);
+  color: white;
+  font-family: 'Amarante', cursive;
+  border-color: rgb(27 27 27);
+  width: 170px;
+  border-radius: 5px;
 }
 
 .logout-button {
@@ -179,6 +188,10 @@ button {
   height: 32px;
   margin: 20px;
   border-radius: 10px;
+  background: rgba(27, 27, 27, 0.8);
+  color: white;
+  font-family: 'Amarante', cursive;
+  border-color: rgb(27 27 27);
 }
 
 .headline {
